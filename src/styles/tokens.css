@@ -74,7 +74,7 @@ select {
 .mobile-navigation-label { padding-top: .75rem; color: var(--color-muted); font-size: .7rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
 .topbar-call-mobile { text-decoration: underline; text-underline-offset: .2em; }
 .contact-page-title { word-spacing: .14em; }
-@media (max-width: 767px) { .mobile-header-controls { position: fixed; top: 2.75rem; right: 1.25rem; z-index: 60; display: flex; } }
+@media (max-width: 767px) { .site-header-inner { position: relative; } .mobile-header-controls { position: absolute; top: 50%; right: 1.25rem; z-index: 1; display: flex; transform: translateY(-50%); } }
 @media (min-width: 768px) { .mobile-header-controls { display: none; } }
 .hero-section { position: relative; overflow: hidden; }
 .hero-art-wrap { position: relative; min-height: 310px; border: 1px solid color-mix(in srgb, var(--color-navy) 14%, transparent); border-radius: 6px; background: var(--color-cream); padding: 1rem; }
