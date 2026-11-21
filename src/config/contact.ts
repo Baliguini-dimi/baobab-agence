@@ -11,7 +11,6 @@ export const agencyContact = {
   email: "dbaliguini@gmail.com",
   whatsappNumber: "+23672380384",
   hours: null as string | null,
-  timeZone: "Africa/Abidjan (UTC+0)",
   latitude: 5.4040088,
   longitude: -4.0008089,
   socialLinks: [

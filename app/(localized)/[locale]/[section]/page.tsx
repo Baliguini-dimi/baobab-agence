@@ -6,11 +6,13 @@ import { locales } from "@/content/schema";
 import { pageCopy, pageSlugs, getPageKey, type SeoPageKey } from "@/content/seo-pages";
 import { pageMetadata, jsonLd, localizedPath } from "@/lib/seo";
 import { agencyContact } from "@/config/contact";
-import { getOffers } from "@/content/queries";
+import { getOffers, getPosts, getProjects, getPresencePlanCatalog } from "@/content/queries";
+import { formatIndicativeUsd, usdReference } from "@/config/currency";
 import { SiteHeader } from "@/components/site/site-header";
 import { SiteFooter } from "@/components/site/site-footer";
 import { Heading } from "@/components/ui/heading";
 import { Card } from "@/components/ui/card";
+import { ServicePlanComparison } from "@/components/site/service-plan-comparison";
 import messagesFr from "@/messages/fr.json";
 import messagesEn from "@/messages/en.json";
 
@@ -50,7 +52,15 @@ export default async function ContentPage({ params }: { params: Promise<{ locale
   const copy = pageCopy[locale][key];
   const dict = dictionaries[locale];
   const category = getServiceCategory(key);
-  const [offers, requestHeaders] = await Promise.all([getOffers(), headers()]);
+  const [offers, planCatalog, projects, posts, requestHeaders] = await Promise.all([
+    getOffers(),
+    getPresencePlanCatalog(),
+    getProjects(),
+    getPosts(),
+    headers(),
+  ]);
+  if (key === "projects" && projects.length === 0) notFound();
+  if (key === "blog" && posts.length === 0) notFound();
   const nonce = requestHeaders.get("x-nonce") ?? undefined;
   const languagePath = (value: Locale) => localizedPath(value, `/${pageSlugs[key].fr}`, `/${pageSlugs[key].en}`);
   const currentUrl = languagePath(locale);
@@ -77,10 +87,6 @@ export default async function ContentPage({ params }: { params: Promise<{ locale
     provider: { "@type": "Organization", name: "Baobab", telephone: agencyContact.phone, email: agencyContact.email },
   } : null;
   const pageOffers = category ? offers.filter((offer) => offer.category === category) : [];
-  const emptyCopy = locale === "fr"
-    ? { projects: "Aucune réalisation n'est publiée pour le moment.", blog: "Aucun article n'est publié pour le moment." }
-    : { projects: "No projects have been published yet.", blog: "No articles have been published yet." };
-
   return <>
     {faqSchema && <script nonce={nonce} type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faqSchema) }} />}
     {breadcrumbSchema && <script nonce={nonce} type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(breadcrumbSchema) }} />}
@@ -92,10 +98,11 @@ export default async function ContentPage({ params }: { params: Promise<{ locale
           {key === "about" && <dl className="fact-grid mt-8 max-w-4xl"><div><dt>{locale === "fr" ? "Fondée en" : "Founded in"}</dt><dd>2026</dd></div><div><dt>{locale === "fr" ? "Équipe" : "Team"}</dt><dd>{locale === "fr" ? "Une dizaine de personnes" : "Around ten people"}</dd></div><div><dt>{locale === "fr" ? "Adresse" : "Location"}</dt><dd>{agencyContact.address}</dd></div></dl>}
         </div>
       </section>
-      {copy.sections.length > 0 && <section className="px-5 py-14 sm:px-8 md:py-20"><div className="mx-auto grid max-w-7xl gap-5 md:grid-cols-2">{copy.sections.map((section, index) => <Card className="h-full" key={section.heading}><p className="outline-number">{String(index + 1).padStart(2, "0")}</p><h2 className="mt-4 font-display text-2xl font-extrabold tracking-tight text-navy">{section.heading}</h2><p className="mt-3 leading-7 text-muted">{section.body}</p></Card>)}</div></section>}
-      {category && pageOffers.length > 0 && <section className="bg-cream px-5 py-14 sm:px-8"><div className="mx-auto max-w-7xl"><h2 className="font-display text-3xl font-extrabold tracking-tight text-navy">{locale === "fr" ? "Offres" : "Offers"}</h2><div className="mt-6 grid gap-5 md:grid-cols-3">{pageOffers.map((offer) => <Card className="h-full" key={offer.id}><h3 className="font-display text-xl font-extrabold text-navy">{offer.translations[locale].title}</h3><p className="mt-3 text-sm leading-6 text-muted">{offer.translations[locale].summary}</p><p className="mt-5 font-bold text-navy">{locale === "fr" ? "À partir de" : "Starting at"} {new Intl.NumberFormat(locale === "fr" ? "fr-CI" : "en-US").format(offer.prices[0].amountXof)} FCFA HT</p></Card>)}</div></div></section>}
-      {key === "projects" && <section className="px-5 py-14 sm:px-8"><div className="mx-auto max-w-7xl"><p className="text-muted">{emptyCopy.projects}</p></div></section>}
-      {key === "blog" && <section className="px-5 py-14 sm:px-8"><div className="mx-auto max-w-7xl"><p className="text-muted">{emptyCopy.blog}</p></div></section>}
+      {copy.sections.length > 0 && <section className="px-5 py-14 sm:px-8 md:py-20"><div className="mx-auto grid max-w-4xl gap-4">{copy.sections.map((section, index) => <Card className="h-full" key={section.heading}><p className="font-display text-lg font-extrabold text-navy">{String(index + 1).padStart(2, "0")}</p><h2 className="mt-3 font-display text-2xl font-extrabold tracking-tight text-navy">{section.heading}</h2><p className="mt-3 leading-7 text-muted">{section.body}</p></Card>)}</div></section>}
+      {category === "onlinePresence" && planCatalog.plans.length > 0 && <section className="bg-cream px-5 py-14 sm:px-8"><div className="mx-auto max-w-7xl"><h2 className="font-display text-3xl font-extrabold tracking-tight text-navy">{locale === "fr" ? "Formules mensuelles" : "Monthly plans"}</h2><ServicePlanComparison catalog={planCatalog} locale={locale} /></div></section>}
+      {category && category !== "onlinePresence" && pageOffers.length > 0 && <section className="bg-cream px-5 py-14 sm:px-8"><div className="mx-auto max-w-7xl"><h2 className="font-display text-3xl font-extrabold tracking-tight text-navy">{locale === "fr" ? "Offres" : "Offers"}</h2><div className="mt-6 grid gap-4">{pageOffers.map((offer) => <Card className="h-full" key={offer.id}><div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between"><div><h3 className="font-display text-xl font-extrabold text-navy">{offer.translations[locale].title}</h3><p className="mt-2 text-sm leading-6 text-muted">{offer.translations[locale].summary}</p></div><div className="shrink-0 sm:text-right"><p className="font-bold text-navy">{offer.prices[0].startingAt && (locale === "fr" ? "À partir de " : "Starting at ")}{new Intl.NumberFormat(locale === "fr" ? "fr-CI" : "en-US").format(offer.prices[0].amountXof)} {locale === "fr" ? "FCFA" : "XOF"} HT</p><p className="mt-1 text-xs text-muted">≈ {formatIndicativeUsd(offer.prices[0].amountXof)} USD · {locale === "fr" ? "indicatif" : "indicative"}</p>{offer.prices[0].cadence === "project" && offer.prices[0].amountXof > 700000 && <p className="mt-2 text-xs text-muted">{locale === "fr" ? "Paiement en 3 fois possible." : "Three instalments available."}</p>}</div></div></Card>)}</div><p className="mt-5 text-xs text-muted">{locale === "fr" ? "USD indicatif au taux de référence du " : "Indicative USD conversion at the reference rate dated "}{locale === "fr" ? usdReference.displayDateFr : usdReference.displayDateEn}. {locale === "fr" ? "Le tarif FCFA HT prévaut." : "The XOF price excluding tax takes precedence."}</p></div></section>}
+      {key === "projects" && <section className="px-5 py-14 sm:px-8"><div className="mx-auto grid max-w-4xl gap-4">{projects.map((project) => <Card className="h-full" key={project.id}><p className="text-xs font-bold uppercase text-muted">{project.classification}</p><h2 className="mt-3 font-display text-xl font-extrabold text-navy">{project.translations[locale].title}</h2><p className="mt-2 text-sm leading-6 text-muted">{project.translations[locale].summary}</p></Card>)}</div></section>}
+      {key === "blog" && <section className="px-5 py-14 sm:px-8"><div className="mx-auto grid max-w-4xl gap-4">{posts.map((post) => <Card className="h-full" key={post.id}><p className="text-xs text-muted">{post.publishedAt}</p><h2 className="mt-3 font-display text-xl font-extrabold text-navy">{post.translations[locale].title}</h2><p className="mt-2 text-sm leading-6 text-muted">{post.translations[locale].excerpt}</p></Card>)}</div></section>}
     </main>
     <SiteFooter locale={locale} copy={dict.home} email={agencyContact.email} socials={agencyContact.socialLinks} />
   </>;

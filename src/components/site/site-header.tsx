@@ -8,9 +8,20 @@ import { Logo } from "@/components/brand/logo";
 import { SocialLinks } from "@/components/site/social-links";
 
 type Copy = {
-  nav: Record<"home" | "services" | "ai" | "online" | "media" | "projects" | "blog" | "contact", string>;
-  phone: string; email: string; address: string; socials: string;
+  nav: Record<"home" | "services" | "ai" | "online" | "media" | "contact", string>;
+  phone: string;
+  email: string;
+  address: string;
+  socials: string;
+  heroCta: string;
 };
+
+const servicePaths = {
+  digitalSolutions: { fr: "solutions-numeriques", en: "digital-solutions" },
+  aiAutomation: { fr: "ia-automatisation", en: "ai-automation" },
+  onlinePresence: { fr: "presence-en-ligne", en: "online-presence" },
+  mediaCoverage: { fr: "couverture-mediatique", en: "media-coverage" },
+} satisfies Record<"digitalSolutions" | "aiAutomation" | "onlinePresence" | "mediaCoverage", Record<Locale, string>>;
 
 export function SiteHeader({
   locale,
@@ -32,62 +43,57 @@ export function SiteHeader({
   languageHref?: string;
 }) {
   const [compact, setCompact] = useState(false);
-
   useEffect(() => {
-    let lastCompact = false;
+    let previous = false;
     const onScroll = () => {
-      const nextCompact = window.scrollY > 48;
-      if (nextCompact !== lastCompact) {
-        lastCompact = nextCompact;
-        setCompact(nextCompact);
+      const next = window.scrollY > 48;
+      if (next !== previous) {
+        previous = next;
+        setCompact(next);
       }
     };
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+  const root = "/" + locale;
+  const languageTarget = languageHref ?? (locale === "fr" ? "/en" : "/fr") + (page === "contact" ? "/contact" : "");
+  const serviceNames = [copy.nav.services, copy.nav.ai, copy.nav.online, copy.nav.media];
+  const serviceKeys = ["digitalSolutions", "aiAutomation", "onlinePresence", "mediaCoverage"] as const;
 
-  const root = `/${locale}`;
-  const languageTarget = languageHref ?? `${locale === "fr" ? "/en" : "/fr"}${page === "contact" ? "/contact" : ""}`;
-  const sectionPath = page === "home" ? "" : `${root}/`;
-  const navItems = [
-    [copy.nav.home, root],
-    [copy.nav.services, `${sectionPath}#services`],
-    [copy.nav.ai, `${sectionPath}#ia`],
-    [copy.nav.online, `${sectionPath}#presence-en-ligne`],
-    [copy.nav.media, `${sectionPath}#couverture-mediatique`],
-    [copy.nav.projects, `${sectionPath}#realisations`],
-    [copy.nav.blog, `${sectionPath}#blog`],
-    [copy.nav.contact, `${root}/contact`],
-  ] as const;
-
-  return (
-    <>
-      <div className="topbar bg-navy-deep text-cream">
-        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-x-6 gap-y-2 px-5 py-2 text-xs sm:px-8">
-          <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
-            {phone && <a href={`tel:${phone}`}><span className="sr-only">{copy.phone}: </span>{phone}</a>}
-            {email && <a href={`mailto:${email}`}><span className="sr-only">{copy.email}: </span>{email}</a>}
-            <span>{address}</span>
-          </div>
-          {socials.length > 0 && <SocialLinks label={copy.socials} links={socials} />}
+  return <>
+    <div className="topbar bg-navy-deep text-cream">
+      <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-x-6 gap-y-2 px-5 py-2 text-xs sm:px-8">
+        <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
+          {phone && <a href={"tel:" + phone}><span className="sr-only">{copy.phone}: </span>{phone}</a>}
+          {email && <a href={"mailto:" + email}><span className="sr-only">{copy.email}: </span>{email}</a>}
+          <span>{address}</span>
+        </div>
+        {socials.some((social) => social.url) && <SocialLinks label={copy.socials} links={socials} />}
+      </div>
+    </div>
+    <header className="site-header sticky top-0 z-40 border-b border-navy/10 bg-paper/95 backdrop-blur" data-compact={compact}>
+        <div className="site-header-inner mx-auto flex max-w-7xl flex-col gap-3 px-5 py-3 sm:px-8 md:flex-row md:items-center md:justify-between">
+        <div className="flex items-center justify-between gap-4">
+          <Link aria-label="Baobab, accueil" href={root}><Logo /></Link>
+          <Link className="rounded-md px-2 py-1 text-xs font-bold text-navy md:hidden" href={languageTarget} lang={locale === "fr" ? "en" : "fr"}>{locale === "fr" ? "EN" : "FR"}</Link>
+        </div>
+        <nav aria-label={locale === "fr" ? "Navigation principale" : "Main navigation"} className="flex flex-wrap items-center gap-x-5 gap-y-1 text-sm font-semibold text-navy">
+          <Link className="py-2 hover:underline hover:decoration-coral hover:underline-offset-4" href={root}>{copy.nav.home}</Link>
+          <details className="services-menu relative">
+            <summary className="cursor-pointer list-none py-2 hover:underline hover:decoration-coral hover:underline-offset-4">{copy.nav.services}<span aria-hidden="true" className="ml-2 text-xs">⌄</span></summary>
+            <div className="services-menu-panel z-50 grid gap-1 bg-paper p-2 md:absolute md:left-0 md:top-full md:min-w-60 md:border md:border-navy/10 md:shadow-card">
+              {serviceKeys.map((key, index) => <Link className="px-3 py-2 hover:bg-cream" href={"/" + locale + "/" + servicePaths[key][locale]} key={key}>{serviceNames[index]}</Link>)}
+            </div>
+          </details>
+          <Link className="py-2 hover:underline hover:decoration-coral hover:underline-offset-4" href={"/" + locale + "/" + (locale === "fr" ? "a-propos" : "about")}>{locale === "fr" ? "À propos" : "About"}</Link>
+          <Link className="py-2 hover:underline hover:decoration-coral hover:underline-offset-4" href={"/" + locale + "/faq"}>FAQ</Link>
+          <Link className="py-2 hover:underline hover:decoration-coral hover:underline-offset-4" href={"/" + locale + "/contact"}>{copy.nav.contact}</Link>
+        </nav>
+        <div className="flex items-center gap-3">
+          <Link aria-label={locale === "fr" ? "English" : "Français"} className="hidden rounded-md px-3 py-2 text-sm font-bold text-navy hover:bg-stone md:inline-flex" href={languageTarget} lang={locale === "fr" ? "en" : "fr"}>{locale === "fr" ? "EN" : "FR"}</Link>
+          <Link className="inline-flex min-h-11 items-center justify-center rounded-md bg-coral px-4 py-2 text-sm font-bold text-navy-deep hover:bg-coral-hover" href={"/" + locale + "/contact"}>{copy.heroCta}</Link>
         </div>
       </div>
-      <header className="site-header sticky top-0 z-40 border-b border-navy/10 bg-paper/95 backdrop-blur" data-compact={compact}>
-        <div className="site-header-inner mx-auto flex max-w-7xl flex-col gap-2 px-5 py-3 sm:px-8 md:flex-row md:items-center md:justify-between">
-          <div className="flex items-center justify-between gap-4">
-            <Link aria-label="Baobab, accueil" href={root}><Logo /></Link>
-            <div className="flex items-center gap-1 md:hidden">
-              <Link className="rounded-md px-2 py-1 text-xs font-bold text-navy" href={languageTarget} lang={locale === "fr" ? "en" : "fr"}>{locale === "fr" ? "EN" : "FR"}</Link>
-            </div>
-          </div>
-          <nav aria-label={locale === "fr" ? "Navigation principale" : "Main navigation"} className="flex max-w-full gap-4 overflow-x-auto pb-1 text-xs font-semibold text-navy sm:gap-5 md:items-center md:pb-0 md:text-sm">
-            {navItems.map(([label, href]) => <Link className="shrink-0 py-2 hover:text-coral-hover" href={href} key={href}>{label}</Link>)}
-          </nav>
-          <div className="hidden shrink-0 gap-1 md:flex">
-            <Link aria-label={locale === "fr" ? "English" : "Français"} className={`rounded-lg px-3 py-2 text-sm font-bold ${locale === "fr" ? "bg-navy text-cream" : "text-navy hover:bg-stone"}`} href={languageTarget} lang={locale === "fr" ? "en" : "fr"}>{locale === "fr" ? "EN" : "FR"}</Link>
-          </div>
-        </div>
-      </header>
-    </>
-  );
+    </header>
+  </>;
 }
