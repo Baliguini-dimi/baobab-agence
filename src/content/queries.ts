@@ -25,21 +25,28 @@ function visible<T extends { status: string }>(items: T[]): T[] {
   return items.filter((item) => item.status === "published");
 }
 
+function assertClientDisclosurePolicy(record: unknown): void {
+  if (!record || typeof record !== "object") return;
+  const project = record as Record<string, unknown>;
+  if (project.classification !== "client") return;
+  const id = String(project.id ?? "unknown");
+  if (project.writtenConsent !== true && project.anonymized !== true) {
+    throw new Error(`Client project ${id} must be anonymized without written consent.`);
+  }
+  if (project.writtenConsent !== true && project.clientName) {
+    throw new Error(`Client project ${id} cannot name a client without written consent.`);
+  }
+}
+
 function visibleProjects(): Project[] {
   return visible(projects).filter((project) => {
-    if (project.classification !== "client") return true;
-    if (!project.writtenConsent && !project.anonymized) {
-      throw new Error(`Client project ${project.id} must be anonymized without written consent.`);
-    }
-    if (!project.writtenConsent && project.clientName) {
-      throw new Error(`Client project ${project.id} cannot name a client without written consent.`);
-    }
+    assertClientDisclosurePolicy(project);
     return true;
   });
 }
 
 const localRepository: ContentRepository = {
-  async getProjects(_locale: Locale) {
+  async getProjects() {
     return visibleProjects();
   },
   async getProjectBySlug(locale, slug) {
@@ -47,13 +54,13 @@ const localRepository: ContentRepository = {
       visibleProjects().find((project) => project.translations[locale].slug === slug) ?? null
     );
   },
-  async getPosts(_locale: Locale) {
+  async getPosts() {
     return visible(posts);
   },
   async getPostBySlug(locale, slug) {
     return visible(posts).find((post) => post.translations[locale].slug === slug) ?? null;
   },
-  async getTestimonials(_locale: Locale) {
+  async getTestimonials() {
     return visible(testimonials).filter((testimonial) => {
       if (!testimonial.writtenConsent) {
         throw new Error(`Published testimonial ${testimonial.id} is missing written consent.`);
@@ -61,22 +68,22 @@ const localRepository: ContentRepository = {
       return true;
     });
   },
-  async getOffers(_locale: Locale) {
+  async getOffers() {
     return visible(offers).sort((a, b) => a.order - b.order);
   },
-  async getTeam(_locale: Locale) {
+  async getTeam() {
     return visible(team)
       .filter((member) => member.publicProfileApproved)
       .sort((a, b) => a.order - b.order);
   },
 };
 
-export const getProjects = (locale: Locale) => localRepository.getProjects(locale);
+export const getProjects = () => localRepository.getProjects();
 export const getProjectBySlug = (locale: Locale, slug: string) =>
   localRepository.getProjectBySlug(locale, slug);
-export const getPosts = (locale: Locale) => localRepository.getPosts(locale);
+export const getPosts = () => localRepository.getPosts();
 export const getPostBySlug = (locale: Locale, slug: string) =>
   localRepository.getPostBySlug(locale, slug);
-export const getTestimonials = (locale: Locale) => localRepository.getTestimonials(locale);
-export const getOffers = (locale: Locale) => localRepository.getOffers(locale);
-export const getTeam = (locale: Locale) => localRepository.getTeam(locale);
+export const getTestimonials = () => localRepository.getTestimonials();
+export const getOffers = () => localRepository.getOffers();
+export const getTeam = () => localRepository.getTeam();

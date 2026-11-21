@@ -95,11 +95,11 @@ export interface TeamMember extends ContentBase {
 }
 
 export interface ContentRepository {
-  getProjects(locale: Locale): Promise<Project[]>;
+  getProjects(): Promise<Project[]>;
   getProjectBySlug(locale: Locale, slug: string): Promise<Project | null>;
-  getPosts(locale: Locale): Promise<Post[]>;
+  getPosts(): Promise<Post[]>;
   getPostBySlug(locale: Locale, slug: string): Promise<Post | null>;
-  getTestimonials(locale: Locale): Promise<Testimonial[]>;
-  getOffers(locale: Locale): Promise<Offer[]>;
-  getTeam(locale: Locale): Promise<TeamMember[]>;
+  getTestimonials(): Promise<Testimonial[]>;
+  getOffers(): Promise<Offer[]>;
+  getTeam(): Promise<TeamMember[]>;
 }

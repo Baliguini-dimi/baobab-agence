@@ -1,0 +1,74 @@
+@import "tailwindcss";
+
+/* Phase 2 palette proposal: change design values here, once, for the whole UI. */
+@theme {
+  --color-navy: #102b46;
+  --color-navy-deep: #0a1d30;
+  --color-cream: #f5f0e6;
+  --color-paper: #fffcf6;
+  --color-stone: #e9edf0;
+  --color-stone-deep: #d4dce3;
+  --color-coral: #f47a63;
+  --color-coral-hover: #de604b;
+  --color-ink: #14202b;
+  --color-muted: #526273;
+  --color-white: #ffffff;
+  --color-focus-ring: #145b83;
+  --color-error: #8c1d18;
+  --color-error-border: #b42318;
+
+  --font-display: var(--font-manrope);
+  --font-sans: var(--font-inter);
+
+  --shadow-card: 0 16px 44px color-mix(in srgb, var(--color-navy) 9%, transparent);
+  --shadow-modal: 0 24px 80px color-mix(in srgb, var(--color-navy-deep) 24%, transparent);
+}
+
+:root {
+  color-scheme: light;
+  --page-background: var(--color-paper);
+  --page-foreground: var(--color-ink);
+  --focus-ring: var(--color-focus-ring);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-width: 320px;
+  background: var(--page-background);
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--page-background);
+  color: var(--page-foreground);
+  font-family: var(--font-inter), Arial, sans-serif;
+  text-align: left;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--color-coral);
+  color: var(--color-navy-deep);
+}
+
+:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 3px;
+}
+
+.baobab-pattern {
+  background-image:
+    radial-gradient(ellipse at 75% 15%, transparent 0 11%, color-mix(in srgb, var(--color-cream) 8%, transparent) 11.2% 11.5%, transparent 11.7% 18%, color-mix(in srgb, var(--color-cream) 6%, transparent) 18.2% 18.5%, transparent 18.7%),
+    radial-gradient(ellipse at 15% 85%, transparent 0 14%, color-mix(in srgb, var(--color-cream) 7%, transparent) 14.2% 14.5%, transparent 14.7% 21%, color-mix(in srgb, var(--color-cream) 5%, transparent) 21.2% 21.5%, transparent 21.7%);
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
