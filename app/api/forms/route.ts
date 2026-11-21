@@ -128,7 +128,7 @@ export async function POST(request: Request) {
     verified = await verifyTurnstile(
       submission.data.turnstileToken,
       env.TURNSTILE_EXPECTED_HOSTNAME,
-      submission.data.requestType,
+      submission.data.requestSubject === "contact" ? "contact" : "quote",
       env.TURNSTILE_SECRET_KEY,
     );
   } catch {
@@ -136,18 +136,22 @@ export async function POST(request: Request) {
   }
   if (!verified) return json({ ok: false, code: "INVALID_INPUT" }, 400);
 
-  const { locale, requestType, name, email, phone, organization, service, message } = submission.data;
+  const { locale, requestSubject, name, email, phone, organization, message } = submission.data;
   const isFrench = locale === "fr";
-  const subject = requestType === "quote"
+  const subjectLabels = {
+    fr: { contact: "Question ou prise de contact", "quote-digital": "Devis · solutions numériques", "quote-ai": "Devis · IA et automatisation", "quote-presence": "Devis · présence en ligne", "quote-media": "Devis · couverture média", "quote-other": "Devis · autre besoin" },
+    en: { contact: "Question or general contact", "quote-digital": "Quote · digital solutions", "quote-ai": "Quote · AI and automation", "quote-presence": "Quote · online presence", "quote-media": "Quote · media coverage", "quote-other": "Quote · other need" },
+  } as const;
+  const isQuote = requestSubject !== "contact";
+  const subject = isQuote
     ? (isFrench ? "Demande de devis Baobab" : "Baobab quote request")
     : (isFrench ? "Message de contact Baobab" : "Baobab contact message");
   const text = [
-    `Type: ${requestType}`,
+    `${isFrench ? "Sujet" : "Subject"}: ${subjectLabels[locale][requestSubject]}`,
     `${isFrench ? "Nom" : "Name"}: ${name}`,
     `Email: ${email}`,
     phone ? `${isFrench ? "Téléphone" : "Phone"}: ${phone}` : "",
     organization ? `Organisation: ${organization}` : "",
-    service ? `Service: ${service}` : "",
     "",
     message,
   ].filter(Boolean).join("\n");

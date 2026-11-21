@@ -61,13 +61,12 @@ export default function DesignSystemDemo({ locale }: { locale: "fr" | "en" }) {
             </div>
           </div>
           <div className="relative mx-auto w-full max-w-md lg:justify-self-end">
-            <div aria-hidden="true" className="absolute -bottom-4 -left-4 h-full w-full rounded-[2rem] bg-coral" />
-            <div className="relative flex aspect-[4/3] flex-col justify-between overflow-hidden rounded-[2rem] border border-white/15 bg-cream p-7 text-navy shadow-card sm:p-9">
+            <div className="relative flex aspect-[4/3] flex-col justify-between overflow-hidden rounded-md border border-white/15 bg-cream p-7 text-navy shadow-card sm:p-9">
               <span className="font-display text-sm font-extrabold uppercase tracking-[0.18em]">{t.brandLine}</span>
-              <span aria-hidden="true" className="self-center font-display text-[8rem] font-extrabold leading-none tracking-[-0.1em] text-navy/10 sm:text-[10rem]">B</span>
+              <svg aria-hidden="true" className="mx-auto w-full max-w-sm text-navy/40" viewBox="0 0 420 170" fill="none"><path d="M38 85c0-44 75-70 172-70s172 26 172 70-75 70-172 70S38 129 38 85Z" stroke="currentColor" strokeWidth="1.5"/><path d="M73 85c0-31 59-50 137-50s137 19 137 50-59 50-137 50S73 116 73 85Z" stroke="currentColor" strokeWidth="1.5"/><path d="M110 85c0-19 43-32 100-32s100 13 100 32-43 32-100 32-100-13-100-32Z" stroke="currentColor" strokeWidth="1.5"/></svg>
               <div className="flex items-end justify-between gap-4">
                 <p className="max-w-52 font-display text-xl font-extrabold leading-tight tracking-tight">{t.visualCaption}</p>
-                <span className="font-display text-5xl font-extrabold tracking-[-0.08em] text-coral-hover">01</span>
+                <span className="font-display text-5xl font-extrabold tracking-[-0.08em] text-navy">01</span>
               </div>
             </div>
           </div>
@@ -130,8 +129,7 @@ function ComponentSamples({ t, onOpen }: { t: DemoCopy; onOpen: () => void }) {
         <p className="text-xs font-bold uppercase tracking-[0.14em] text-muted">{t.components}</p>
         <div className="mt-5 flex flex-wrap items-center gap-3"><Button>{t.mainAction}</Button><Button variant="secondary">{t.secondaryAction}</Button><Badge tone="coral">2026</Badge><Badge>Baobab</Badge><Badge tone="navy">Abidjan</Badge></div>
       </Card>
-      <Card className="relative mt-3">
-        <span aria-hidden="true" className="absolute -right-3 -top-3 -z-10 h-full w-full rounded-2xl bg-coral/55" />
+      <Card>
         <p className="text-xs font-bold uppercase tracking-[0.14em] text-muted">{t.cardLabel}</p>
         <h3 className="mt-4 font-display text-2xl font-extrabold tracking-tight text-navy">{t.cardTitle}</h3>
         <p className="mt-3 leading-7 text-muted">{t.cardBody}</p>
@@ -140,7 +138,7 @@ function ComponentSamples({ t, onOpen }: { t: DemoCopy; onOpen: () => void }) {
         <p className="text-xs font-bold uppercase tracking-[0.14em] text-muted">{t.form}</p>
         <div className="mt-4"><FormField id="demo-email" label={t.fieldLabel} hint={t.fieldHint} inputProps={{ type: "email", placeholder: t.fieldPlaceholder }} /></div>
       </Card>
-      <div className="flex flex-wrap items-center gap-4"><Button onClick={onOpen}>{t.open}</Button><p className="outlined-demo-number font-display text-5xl font-extrabold tracking-[-0.08em] text-transparent">02</p></div>
+      <div className="flex flex-wrap items-center gap-4"><Button onClick={onOpen}>{t.open}</Button><p className="font-display text-5xl font-extrabold tracking-[-0.08em] text-navy">02</p></div>
     </div>
   );
 }
