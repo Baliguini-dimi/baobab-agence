@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 
 export function ScrollMotionRoot() {
   useEffect(() => {
@@ -20,7 +20,6 @@ export function ScrollReveal({
   delay?: number;
 }) {
   const ref = useRef<HTMLDivElement>(null);
-  const style = { "--reveal-delay": `${delay}ms` } as CSSProperties;
 
   useEffect(() => {
     const element = ref.current;
@@ -40,7 +39,7 @@ export function ScrollReveal({
     return () => observer.disconnect();
   }, []);
 
-  return <div className={className} data-reveal="pending" ref={ref} style={style}>{children}</div>;
+  return <div className={className} data-reveal="pending" data-reveal-delay={delay} ref={ref}>{children}</div>;
 }
 
 export function CountUp({
@@ -91,7 +90,7 @@ export function CountUp({
   return <span aria-label={label} ref={ref}><span aria-hidden="true">{count.toLocaleString("fr-CI")}{suffix}</span></span>;
 }
 
-export function Parallax({ children, className = "" }: { children: ReactNode; className?: string }) {
+export function Parallax({ children, className = "parallax-shift" }: { children: ReactNode; className?: string }) {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -102,8 +101,8 @@ export function Parallax({ children, className = "" }: { children: ReactNode; cl
       cancelAnimationFrame(frame);
       frame = requestAnimationFrame(() => {
         const rect = element.getBoundingClientRect();
-        const offset = Math.max(-12, Math.min(12, (window.innerHeight / 2 - rect.top) * 0.025));
-        element.style.transform = `translate3d(0, ${offset}px, 0)`;
+        const offset = Math.round(Math.max(-12, Math.min(12, (window.innerHeight / 2 - rect.top) * 0.025)));
+        element.dataset.parallaxOffset = String(offset);
       });
     };
     window.addEventListener("scroll", update, { passive: true });

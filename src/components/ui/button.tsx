@@ -13,7 +13,7 @@ const variants = {
 export function Button({ variant = "primary", type = "button", className = "", ...props }: ButtonProps) {
   return (
     <button
-      className={`inline-flex min-h-12 items-center justify-center rounded-xl px-5 py-3 text-sm font-bold transition-transform transition-opacity disabled:cursor-not-allowed disabled:opacity-50 ${variants[variant]} ${className}`}
+      className={`inline-flex min-h-12 items-center justify-center rounded-xl px-5 py-3 text-sm font-bold transition-[transform,opacity] disabled:cursor-not-allowed disabled:opacity-50 ${variants[variant]} ${className}`}
       type={type}
       {...props}
     />

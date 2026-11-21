@@ -107,9 +107,12 @@
     "subtitle": "Describe your project; we can clarify the need and scope together.",
     "formTitle": "Request a quote",
     "formIntro": "Fields marked with an asterisk are required.",
-    "name": "Full name", "email": "Email address", "organization": "Company or organisation", "service": "Request topic", "message": "How can we help?", "submit": "Prepare my request",
-    "prototypeNote": "Prototype: this form does not send or store your information.",
-    "prototypeStatus": "No message was sent. The form will be connected after a receiving channel is configured.",
+    "name": "Full name", "email": "Email address", "phone": "Phone", "organization": "Company or organisation", "service": "Request topic", "message": "How can we help?", "submit": "Send request",
+    "requestType": "Request type", "contactRequest": "Question or general contact", "quoteRequest": "Request a quote", "privacyNotice": "Your information is sent by email to Baobab through our email provider. This prototype does not store it in a database.",
+    "validationError": "Check the fields and try again.", "captchaRequired": "Complete the bot check before sending.", "captchaUnavailable": "The form is temporarily unavailable. Please email us directly.", "sending": "Sending…", "sent": "Your request has been sent.", "serverError": "The request could not be sent. Try again later or email us directly.", "rateLimitError": "Too many requests have been sent. Wait before trying again.", "honeypotLabel": "Leave this blank",
     "locationTitle": "Find us", "address": "Dokui, Abobo, Abidjan", "mapButton": "Show the map", "mapTitle": "Map of Dokui, Abobo, Abidjan", "mapNote": "The marker shows the GPS point provided.", "directions": "Directions", "googleMaps": "Google Maps", "waze": "Waze", "whatsapp": "WhatsApp", "hours": "Opening hours", "timeZone": "Time zone", "directContact": "Contact details", "notProvided": "To be provided"
+  },
+  "cookieConsent": {
+    "title": "Your cookie preferences", "body": "No audience measurement or advertising tools are enabled. You can reject or accept optional cookies; your choice will be remembered.", "reject": "Reject optional", "accept": "Accept", "details": "Learn more", "pageTitle": "Cookies and tracking", "pageBody": "At this stage, the site has no audience measurement or advertising. The Google Maps frame loads only after you click and may send connection data to Google.", "essentialOnly": "The baobab-cookie-consent cookie only remembers your choice (essential only or consent for optional cookies).", "preferenceCookie": "The contact form is protected by Cloudflare Turnstile; its widget may use technologies required for bot protection when you load it. Links to Google Maps and Waze open their external services.", "futureTracking": "No optional tracking is loaded on this prototype, even after acceptance. Any tracking added later must respect your choice before it loads."
   }
 }

@@ -1,21 +1,124 @@
 "use client";
 
-import { useState } from "react";
+import Script from "next/script";
+import { useCallback, useEffect, useRef, useState, type FormEvent } from "react";
+import { contactFieldsSchema, contactSubmissionSchema } from "@/lib/forms/schema";
+import type { Locale } from "@/content/schema";
 
-export function ContactForm({ copy }: { copy: {
-  name: string; email: string; organization: string; service: string; message: string; submit: string; prototypeNote: string; prototypeStatus: string;
+type TurnstileApi = {
+  render: (target: HTMLElement, options: {
+    sitekey: string;
+    action: "contact" | "quote";
+    callback: (token: string) => void;
+    "expired-callback": () => void;
+    "error-callback": () => void;
+  }) => string;
+  remove: (widgetId: string) => void;
+  reset: (widgetId: string) => void;
+};
+
+declare global {
+  interface Window { turnstile?: TurnstileApi; }
+}
+
+function TurnstileWidget({ siteKey, action, nonce, onToken, failed }: {
+  siteKey: string; action: "contact" | "quote"; nonce?: string; onToken: (token: string) => void; failed: () => void;
+}) {
+  const target = useRef<HTMLDivElement>(null);
+  const widgetId = useRef<string | null>(null);
+  const [ready, setReady] = useState(false);
+
+  useEffect(() => {
+    if (!ready || !target.current || !window.turnstile) return;
+    widgetId.current = window.turnstile.render(target.current, {
+      sitekey: siteKey,
+      action,
+      callback: onToken,
+      "expired-callback": () => {
+        failed();
+        if (widgetId.current) window.turnstile?.reset(widgetId.current);
+      },
+      "error-callback": failed,
+    });
+    return () => {
+      if (widgetId.current) window.turnstile?.remove(widgetId.current);
+      widgetId.current = null;
+    };
+  }, [action, failed, onToken, ready, siteKey]);
+
+  return <>
+    <Script nonce={nonce} onReady={() => setReady(true)} src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" strategy="afterInteractive" />
+    <div aria-label="Cloudflare Turnstile" ref={target} />
+  </>;
+}
+
+export function ContactForm({ copy, locale, nonce }: { locale: Locale; nonce?: string; copy: {
+  name: string; email: string; organization: string; service: string; message: string; submit: string;
+  phone: string; requestType: string; contactRequest: string; quoteRequest: string;
+  privacyNotice: string; validationError: string; captchaRequired: string; captchaUnavailable: string;
+  sending: string; sent: string; serverError: string; rateLimitError: string; honeypotLabel: string;
 } }) {
-  const [attempted, setAttempted] = useState(false);
+  const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
+  const [requestType, setRequestType] = useState<"contact" | "quote">("quote");
+  const [token, setToken] = useState("");
+  const [status, setStatus] = useState("");
+  const [sending, setSending] = useState(false);
+  const [captchaRevision, setCaptchaRevision] = useState(0);
+  const onToken = useCallback((next: string) => setToken(next), []);
+  const onCaptchaFailure = useCallback(() => setToken(""), []);
+
+  async function submit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setStatus("");
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+    const fields = contactFieldsSchema.safeParse(Object.fromEntries(formData.entries()));
+    if (!fields.success) { setStatus(copy.validationError); return; }
+    if (!siteKey) { setStatus(copy.captchaUnavailable); return; }
+    if (!token) { setStatus(copy.captchaRequired); return; }
+    const submission = contactSubmissionSchema.safeParse({ ...fields.data, turnstileToken: token });
+    if (!submission.success) { setStatus(copy.validationError); return; }
+
+    setSending(true);
+    try {
+      const response = await fetch("/api/forms", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(submission.data),
+      });
+      if (response.ok) {
+        setStatus(copy.sent);
+        form.reset();
+        setToken("");
+      } else if (response.status === 429) {
+        setStatus(copy.rateLimitError);
+      } else {
+        setStatus(copy.serverError);
+      }
+    } catch {
+      setStatus(copy.serverError);
+    } finally {
+      setSending(false);
+      setToken("");
+      setCaptchaRevision((revision) => revision + 1);
+    }
+  }
+
   return (
-    <form className="grid gap-5" onSubmit={(event) => { event.preventDefault(); setAttempted(true); }}>
-      <p className="text-sm leading-6 text-muted">{copy.prototypeNote}</p>
-      <label className="grid gap-2 text-sm font-bold text-navy">{copy.name} *<input autoComplete="name" className="form-control" name="name" required /></label>
-      <label className="grid gap-2 text-sm font-bold text-navy">{copy.email} *<input autoComplete="email" className="form-control" name="email" required type="email" /></label>
-      <label className="grid gap-2 text-sm font-bold text-navy">{copy.organization}<input autoComplete="organization" className="form-control" name="organization" /></label>
-      <label className="grid gap-2 text-sm font-bold text-navy">{copy.service}<input className="form-control" name="service" /></label>
-      <label className="grid gap-2 text-sm font-bold text-navy">{copy.message} *<textarea className="form-control min-h-36" name="message" required /></label>
-      <button className="inline-flex min-h-12 w-fit items-center justify-center rounded-xl bg-coral px-5 py-3 text-sm font-bold text-navy-deep hover:bg-coral-hover" type="submit">{copy.submit}</button>
-      {attempted && <p aria-live="polite" className="rounded-xl bg-stone p-4 text-sm text-navy" role="status">{copy.prototypeStatus}</p>}
+    <form className="grid gap-5" noValidate onSubmit={submit}>
+      <input name="locale" type="hidden" value={locale} />
+      <label className="grid gap-2 text-sm font-bold text-navy">{copy.requestType}<select className="form-control" name="requestType" onChange={(event) => { setRequestType(event.target.value as "contact" | "quote"); setToken(""); }} value={requestType}><option value="quote">{copy.quoteRequest}</option><option value="contact">{copy.contactRequest}</option></select></label>
+      <label className="grid gap-2 text-sm font-bold text-navy">{copy.name} *<input autoComplete="name" className="form-control" maxLength={120} name="name" required /></label>
+      <label className="grid gap-2 text-sm font-bold text-navy">{copy.email} *<input autoComplete="email" className="form-control" maxLength={254} name="email" required type="email" /></label>
+      <label className="grid gap-2 text-sm font-bold text-navy">{copy.phone}<input autoComplete="tel" className="form-control" maxLength={32} name="phone" type="tel" /></label>
+      <label className="grid gap-2 text-sm font-bold text-navy">{copy.organization}<input autoComplete="organization" className="form-control" maxLength={160} name="organization" /></label>
+      <label className="grid gap-2 text-sm font-bold text-navy">{copy.service}<input className="form-control" maxLength={160} name="service" /></label>
+      <label className="grid gap-2 text-sm font-bold text-navy">{copy.message} *<textarea className="form-control min-h-36" maxLength={5000} minLength={10} name="message" required /></label>
+      <div aria-hidden="true" className="form-honeypot"><label>{copy.honeypotLabel}<input autoComplete="off" name="website" tabIndex={-1} type="text" /></label></div>
+      {siteKey ? <TurnstileWidget action={requestType} failed={onCaptchaFailure} key={captchaRevision} nonce={nonce} onToken={onToken} siteKey={siteKey} /> : <p className="text-sm text-muted">{copy.captchaUnavailable}</p>}
+      <p className="text-xs leading-5 text-muted">{copy.privacyNotice}</p>
+      <button className="inline-flex min-h-12 w-fit items-center justify-center rounded-xl bg-coral px-5 py-3 text-sm font-bold text-navy-deep disabled:cursor-not-allowed disabled:opacity-60" disabled={sending || !siteKey} type="submit">{sending ? copy.sending : copy.submit}</button>
+      {status && <p aria-live="polite" className="rounded-xl bg-stone p-4 text-sm text-navy" role="status">{status}</p>}
     </form>
   );
 }

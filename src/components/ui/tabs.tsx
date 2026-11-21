@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, type CSSProperties, type KeyboardEvent, type ReactNode } from "react";
+import { useRef, useState, type KeyboardEvent, type ReactNode } from "react";
 
 export type TabItem = { id: string; label: string; content: ReactNode };
 
@@ -22,7 +22,7 @@ export function Tabs({ items, label = "Exemples de composants" }: { items: TabIt
 
   return (
     <div>
-      <div className="tabs-list flex flex-wrap gap-2" role="tablist" aria-label={label} style={{ "--tab-count": items.length, "--tab-index": active } as CSSProperties}>
+      <div className={`tabs-list flex flex-wrap gap-2 tabs-count-${items.length} tabs-index-${active}`} role="tablist" aria-label={label} data-tab-count={items.length} data-tab-index={active}>
         {items.map((item, index) => (
           <button
             aria-controls={`panel-${item.id}`}

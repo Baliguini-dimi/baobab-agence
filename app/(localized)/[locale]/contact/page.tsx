@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { headers } from "next/headers";
 import { notFound } from "next/navigation";
 import type { Locale } from "@/content/schema";
 import { locales } from "@/content/schema";
@@ -26,6 +27,7 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
   const dict = dictionaries[locale];
   const copy = dict.contact;
   const homeCopy = dict.home;
+  const nonce = (await headers()).get("x-nonce") ?? undefined;
   const encodedDestination = encodeURIComponent(getMapDestination());
   const googleDirections = `https://www.google.com/maps/dir/?api=1&destination=${encodedDestination}`;
   const wazeDirections = `https://waze.com/ul?q=${encodedDestination}&navigate=yes`;
@@ -36,7 +38,7 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
     <main>
       <section className="bg-cream px-5 py-14 sm:px-8 md:py-20"><div className="mx-auto max-w-7xl"><Heading as="h1" eyebrow={copy.eyebrow}>{copy.title}</Heading><p className="mt-5 max-w-2xl text-lg leading-8 text-muted">{copy.subtitle}</p></div></section>
       <section className="px-5 py-14 sm:px-8 md:py-20"><div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[1.1fr_.9fr]">
-        <Card><h2 className="font-display text-2xl font-extrabold text-navy">{copy.formTitle}</h2><p className="mb-6 mt-2 text-sm text-muted">{copy.formIntro}</p><ContactForm copy={copy} /></Card>
+        <Card><h2 className="font-display text-2xl font-extrabold text-navy">{copy.formTitle}</h2><p className="mb-6 mt-2 text-sm text-muted">{copy.formIntro}</p><ContactForm copy={copy} locale={locale} nonce={nonce} /></Card>
         <div className="grid content-start gap-6"><Card><h2 className="font-display text-2xl font-extrabold text-navy">{copy.locationTitle}</h2><p className="mt-4 text-lg font-semibold text-navy">{agencyContact.address}</p>
           {agencyContact.latitude === null && <p className="mt-2 text-sm text-muted">{copy.mapNote}</p>}
           <div className="mt-5"><MapEmbed copy={copy} query={getMapDestination()} /></div>

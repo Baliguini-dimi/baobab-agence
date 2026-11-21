@@ -56,7 +56,7 @@ export default function DesignSystemDemo({ locale }: { locale: "fr" | "en" }) {
             <h1 className="font-display text-5xl font-extrabold leading-[0.98] tracking-[-0.065em] text-cream sm:text-6xl lg:text-7xl">{t.heroTitle}</h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-cream/85">{t.heroBody}</p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <a className="inline-flex min-h-12 items-center justify-center rounded-xl bg-coral px-5 py-3 text-sm font-bold text-navy-deep transition-colors hover:bg-coral-hover" href="#components">{t.mainAction}</a>
+              <a className="inline-flex min-h-12 items-center justify-center rounded-xl bg-coral px-5 py-3 text-sm font-bold text-navy-deep hover:bg-coral-hover" href="#components">{t.mainAction}</a>
               <button className="inline-flex min-h-12 items-center justify-center rounded-xl border border-cream/35 px-5 py-3 text-sm font-bold text-cream hover:bg-cream/10" onClick={openModal} type="button">{t.secondaryAction}</button>
             </div>
           </div>
@@ -140,7 +140,7 @@ function ComponentSamples({ t, onOpen }: { t: DemoCopy; onOpen: () => void }) {
         <p className="text-xs font-bold uppercase tracking-[0.14em] text-muted">{t.form}</p>
         <div className="mt-4"><FormField id="demo-email" label={t.fieldLabel} hint={t.fieldHint} inputProps={{ type: "email", placeholder: t.fieldPlaceholder }} /></div>
       </Card>
-      <div className="flex flex-wrap items-center gap-4"><Button onClick={onOpen}>{t.open}</Button><p className="font-display text-5xl font-extrabold tracking-[-0.08em] text-transparent" style={{ WebkitTextStroke: "1px var(--color-navy)" }}>02</p></div>
+      <div className="flex flex-wrap items-center gap-4"><Button onClick={onOpen}>{t.open}</Button><p className="outlined-demo-number font-display text-5xl font-extrabold tracking-[-0.08em] text-transparent">02</p></div>
     </div>
   );
 }
