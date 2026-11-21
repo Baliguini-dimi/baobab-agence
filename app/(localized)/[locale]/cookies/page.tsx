@@ -4,12 +4,20 @@ import { Heading } from "@/components/ui/heading";
 import { locales, type Locale } from "@/content/schema";
 import messagesFr from "@/messages/fr.json";
 import messagesEn from "@/messages/en.json";
+import { pageMetadata } from "@/lib/seo";
 
 const dictionaries = { fr: messagesFr, en: messagesEn };
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: Locale }> }): Promise<Metadata> {
   const { locale } = await params;
-  return { title: dictionaries[locale].pages.cookies, alternates: { languages: { fr: "/fr/cookies", en: "/en/cookies" } } };
+  const isFrench = locale === "fr";
+  return pageMetadata({
+    locale,
+    title: isFrench ? "Politique de cookies" : "Cookie policy",
+    description: isFrench ? "Informations sur les cookies et préférences utilisés sur le site Baobab." : "Information about cookies and preferences used on the Baobab website.",
+    frPath: "/fr/cookies",
+    enPath: "/en/cookies",
+  });
 }
 
 export default async function CookiesPage({ params }: { params: Promise<{ locale: string }> }) {

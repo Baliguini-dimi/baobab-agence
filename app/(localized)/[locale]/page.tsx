@@ -12,14 +12,23 @@ import { Card } from "@/components/ui/card";
 import { ButtonLink } from "@/components/ui/button-link";
 import messagesFr from "@/messages/fr.json";
 import messagesEn from "@/messages/en.json";
+import { pageMetadata } from "@/lib/seo";
 
 type HomeCopy = typeof messagesFr.home;
 const dictionaries = { fr: messagesFr, en: messagesEn };
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: Locale }> }): Promise<Metadata> {
   const { locale } = await params;
-  const title = locale === "fr" ? "Agence numérique à Abidjan" : "Digital agency in Abidjan";
-  return { title, alternates: { languages: { fr: "/fr", en: "/en" } } };
+  const isFrench = locale === "fr";
+  return pageMetadata({
+    locale,
+    title: isFrench ? "Agence digitale à Abidjan et agence web à Abobo" : "Digital agency in Abidjan",
+    description: isFrench
+      ? "Agence digitale à Abidjan, à Dokui, Abobo : solutions web et mobiles, IA, présence en ligne et couverture médiatique."
+      : "A digital agency in Abidjan, based in Dokui, Abobo: web and mobile solutions, AI, online presence and media coverage.",
+    frPath: "/fr",
+    enPath: "/en",
+  });
 }
 
 function xof(amount: number, locale: Locale) {

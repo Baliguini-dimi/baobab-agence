@@ -20,6 +20,7 @@ export function SiteHeader({
   phone,
   email,
   socials,
+  languageHref,
 }: {
   locale: Locale;
   copy: Copy;
@@ -28,6 +29,7 @@ export function SiteHeader({
   phone: string | null;
   email: string | null;
   socials: SocialLink[];
+  languageHref?: string;
 }) {
   const [compact, setCompact] = useState(false);
 
@@ -45,6 +47,7 @@ export function SiteHeader({
   }, []);
 
   const root = `/${locale}`;
+  const languageTarget = languageHref ?? `${locale === "fr" ? "/en" : "/fr"}${page === "contact" ? "/contact" : ""}`;
   const sectionPath = page === "home" ? "" : `${root}/`;
   const navItems = [
     [copy.nav.home, root],
@@ -74,14 +77,14 @@ export function SiteHeader({
           <div className="flex items-center justify-between gap-4">
             <Link aria-label="Baobab, accueil" href={root}><Logo /></Link>
             <div className="flex items-center gap-1 md:hidden">
-              <Link className="rounded-md px-2 py-1 text-xs font-bold text-navy" href={`${locale === "fr" ? "/en" : "/fr"}${page === "contact" ? "/contact" : ""}`} lang={locale === "fr" ? "en" : "fr"}>{locale === "fr" ? "EN" : "FR"}</Link>
+              <Link className="rounded-md px-2 py-1 text-xs font-bold text-navy" href={languageTarget} lang={locale === "fr" ? "en" : "fr"}>{locale === "fr" ? "EN" : "FR"}</Link>
             </div>
           </div>
           <nav aria-label={locale === "fr" ? "Navigation principale" : "Main navigation"} className="flex max-w-full gap-4 overflow-x-auto pb-1 text-xs font-semibold text-navy sm:gap-5 md:items-center md:pb-0 md:text-sm">
             {navItems.map(([label, href]) => <Link className="shrink-0 py-2 hover:text-coral-hover" href={href} key={href}>{label}</Link>)}
           </nav>
           <div className="hidden shrink-0 gap-1 md:flex">
-            <Link aria-label={locale === "fr" ? "English" : "Français"} className={`rounded-lg px-3 py-2 text-sm font-bold ${locale === "fr" ? "bg-navy text-cream" : "text-navy hover:bg-stone"}`} href={`${locale === "fr" ? "/en" : "/fr"}${page === "contact" ? "/contact" : ""}`} lang={locale === "fr" ? "en" : "fr"}>{locale === "fr" ? "EN" : "FR"}</Link>
+            <Link aria-label={locale === "fr" ? "English" : "Français"} className={`rounded-lg px-3 py-2 text-sm font-bold ${locale === "fr" ? "bg-navy text-cream" : "text-navy hover:bg-stone"}`} href={languageTarget} lang={locale === "fr" ? "en" : "fr"}>{locale === "fr" ? "EN" : "FR"}</Link>
           </div>
         </div>
       </header>

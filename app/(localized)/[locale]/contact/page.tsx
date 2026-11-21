@@ -12,12 +12,22 @@ import { Heading } from "@/components/ui/heading";
 import { ButtonLink } from "@/components/ui/button-link";
 import messagesFr from "@/messages/fr.json";
 import messagesEn from "@/messages/en.json";
+import { pageMetadata } from "@/lib/seo";
 
 const dictionaries = { fr: messagesFr, en: messagesEn };
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: Locale }> }): Promise<Metadata> {
   const { locale } = await params;
-  return { title: locale === "fr" ? "Contact" : "Contact", alternates: { languages: { fr: "/fr/contact", en: "/en/contact" } } };
+  const isFrench = locale === "fr";
+  return pageMetadata({
+    locale,
+    title: isFrench ? "Contact et devis à Abidjan" : "Contact and quotes in Abidjan",
+    description: isFrench
+      ? "Contactez Baobab pour un devis : agence numérique à Dokui, Abobo, Abidjan. Téléphone, email et itinéraire."
+      : "Contact Baobab for a quote: digital agency in Dokui, Abobo, Abidjan. Phone, email and directions.",
+    frPath: "/fr/contact",
+    enPath: "/en/contact",
+  });
 }
 
 export default async function ContactPage({ params }: { params: Promise<{ locale: string }> }) {
