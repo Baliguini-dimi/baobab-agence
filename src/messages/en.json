@@ -1,0 +1,29 @@
+{
+  "siteName": "Baobab",
+  "language": "English",
+  "navigation": {
+    "home": "Home",
+    "digitalSolutions": "Digital solutions",
+    "aiAutomation": "AI and automation",
+    "onlinePresence": "Online presence",
+    "mediaCoverage": "Media coverage",
+    "projects": "Projects",
+    "about": "About and team",
+    "blog": "Blog",
+    "faq": "FAQ",
+    "contact": "Contact",
+    "equipment": "Equipment"
+  },
+  "pages": {
+    "legalNotice": "Legal notice",
+    "privacy": "Privacy",
+    "cookies": "Cookies",
+    "equipmentStatus": "Coming soon"
+  },
+  "projectSections": {
+    "context": "Context",
+    "solution": "Solution",
+    "technique": "Technology",
+    "result": "Outcome"
+  }
+}
