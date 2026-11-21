@@ -24,7 +24,7 @@ export function Heading({ as: Element = "h2", eyebrow, number, children, classNa
           {eyebrow && <span>{eyebrow}</span>}
         </div>
       )}
-      <Element className={`font-display font-extrabold leading-[1.05] tracking-[-0.055em] text-navy ${sizes[Element]} ${className}`}>
+      <Element className={`font-display font-extrabold leading-[1.05] tracking-[-0.02em] text-navy ${sizes[Element]} ${className}`}>
         {children}
       </Element>
     </div>

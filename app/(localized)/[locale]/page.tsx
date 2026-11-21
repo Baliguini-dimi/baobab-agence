@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import type { Metadata } from "next";
 import { getOffers, getPosts, getProjects, getTestimonials } from "@/content/queries";
 import type { Locale, Offer, OfferCategory } from "@/content/schema";
@@ -9,6 +10,8 @@ import { SiteFooter } from "@/components/site/site-footer";
 import { Heading } from "@/components/ui/heading";
 import { Card } from "@/components/ui/card";
 import { ButtonLink } from "@/components/ui/button-link";
+import { ExternalArrowIcon } from "@/components/ui/external-arrow-icon";
+import { agencyMedia } from "@/config/media";
 import messagesFr from "@/messages/fr.json";
 import messagesEn from "@/messages/en.json";
 import { pageMetadata } from "@/lib/seo";
@@ -46,15 +49,15 @@ function OfferCard({ offer, category, locale, name, copy }: { offer: Offer; cate
   return <Link className="block h-full" href={"/" + locale + "/" + categoryRoutes[category][locale]}>
     <Card as="article" className="offer-card flex h-full min-h-64 flex-col">
       <p className="text-xs font-bold uppercase tracking-[.12em] text-muted">{name}</p>
-      <h3 className="mt-4 font-display text-2xl font-extrabold leading-tight tracking-tight text-navy">{offer.translations[locale].title}</h3>
+      <h3 className="mt-4 font-display text-2xl font-extrabold leading-tight tracking-[-.02em] text-navy">{offer.translations[locale].title}</h3>
       <p className="mt-3 flex-1 leading-7 text-muted">{offer.translations[locale].summary}</p>
       <p className="mt-6 border-t border-navy/10 pt-4 text-sm font-bold text-navy">
         <span className="mr-1 text-xs font-semibold text-muted">{copy.priceStarting}</span>{xof(price.amountXof, locale)}
         {price.cadence === "month" && <span className="ml-1 text-xs font-semibold text-muted">{copy.priceMonthly}</span>}
         <span className="ml-1 text-xs font-semibold text-muted">{copy.tax}</span>
-        <span className="mt-1 block text-xs font-normal text-muted">≈ {formatIndicativeUsd(price.amountXof)} USD · {copy.usdIndicative}</span>
+        <span className="mt-1 block text-xs font-normal text-muted">≈ {formatIndicativeUsd(price.amountXof)} · {copy.usdIndicative}</span>
       </p>
-      <span className="mt-4 text-sm font-bold text-navy">{copy.offerMore}<span aria-hidden="true"> ↗</span></span>
+      <span className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-navy">{copy.offerMore}<ExternalArrowIcon /></span>
     </Card>
   </Link>;
 }
@@ -92,17 +95,17 @@ export default async function HomePage({ params }: { params: Promise<{ locale: L
   const priceDate = locale === "fr" ? usdReference.displayDateFr : usdReference.displayDateEn;
 
   return <>
-    <SiteHeader locale={locale} copy={copy} page="home" address={agencyContact.address} phone={agencyContact.phone} email={agencyContact.email} socials={agencyContact.socialLinks} />
+    <SiteHeader locale={locale} copy={copy} page="home" address={agencyContact.address} phone={agencyContact.phone} phoneDisplay={agencyContact.phoneDisplay} email={agencyContact.email} socials={agencyContact.socialLinks} />
     <main>
       <section className="hero-section px-5 py-14 sm:px-8 md:py-20">
         <div className="mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-[1.05fr_.95fr]">
           <div>
             <p className="mb-5 text-xs font-bold uppercase tracking-[.18em] text-muted">{copy.heroEyebrow}</p>
-            <h1 className="max-w-3xl font-display text-5xl font-extrabold leading-[1.02] tracking-[-.05em] text-navy sm:text-6xl lg:text-7xl">{copy.heroTitle}</h1>
+            <h1 className="max-w-3xl font-display text-5xl font-extrabold leading-[1.02] tracking-[-.02em] text-navy sm:text-6xl lg:text-7xl">{copy.heroTitle}</h1>
             <p className="mt-6 max-w-xl text-lg leading-8 text-muted">{copy.heroSubtitle}</p>
-            <ButtonLink className="mt-8" href={"/" + locale + "/contact"}>{copy.heroCta}<span aria-hidden="true"> ↗</span></ButtonLink>
+            <ButtonLink className="mt-8" href={"/" + locale + "/contact"}>{copy.heroCta}<ExternalArrowIcon /></ButtonLink>
           </div>
-          <div className="hero-art-wrap"><BaobabRings /></div>
+          <div className="hero-art-wrap">{agencyMedia.hero.src && agencyMedia.hero.alt[locale] ? <div className="hero-image-frame"><Image alt={agencyMedia.hero.alt[locale]} className="hero-photo" fill priority sizes="(max-width: 1024px) 100vw, 48vw" src={agencyMedia.hero.src} /></div> : <BaobabRings />}</div>
         </div>
       </section>
 
@@ -148,7 +151,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: L
         <div className="mx-auto grid max-w-7xl gap-9 lg:grid-cols-[.9fr_1.1fr] lg:items-center">
           <div>
             <p className="text-xs font-bold uppercase tracking-[.16em] text-cream/70">{copy.aiEyebrow}</p>
-            <h2 className="mt-4 max-w-xl font-display text-3xl font-extrabold leading-tight tracking-tight sm:text-4xl">{copy.aiExampleTitle}</h2>
+            <h2 className="mt-4 max-w-xl font-display text-3xl font-extrabold leading-tight tracking-[-.02em] sm:text-4xl">{copy.aiExampleTitle}</h2>
             <p className="mt-4 max-w-xl leading-7 text-cream/80">{copy.aiExampleNote}</p>
           </div>
           <div aria-label={copy.aiExampleLabel} className="conversation-card">
@@ -173,8 +176,8 @@ export default async function HomePage({ params }: { params: Promise<{ locale: L
 
       <section className="bg-navy px-5 py-12 text-cream sm:px-8 md:py-16">
         <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
-          <h2 className="max-w-2xl font-display text-3xl font-extrabold tracking-tight sm:text-4xl">{copy.closingTitle}</h2>
-          <ButtonLink href={"/" + locale + "/contact"}>{copy.closingCta}<span aria-hidden="true"> ↗</span></ButtonLink>
+          <h2 className="max-w-2xl font-display text-3xl font-extrabold tracking-[-.02em] sm:text-4xl">{copy.closingTitle}</h2>
+          <ButtonLink href={"/" + locale + "/contact"}>{copy.closingCta}<ExternalArrowIcon /></ButtonLink>
         </div>
       </section>
     </main>

@@ -99,7 +99,7 @@ export default async function DetailPage({ params }: { params: Promise<{ locale:
   return <>
     <script nonce={nonce} type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(breadcrumbSchema) }} />
     {articleSchema && <script nonce={nonce} type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(articleSchema) }} />}
-    <SiteHeader locale={locale} copy={dictionary.home} page="contact" address={agencyContact.address} phone={agencyContact.phone} email={agencyContact.email} socials={agencyContact.socialLinks} languageHref={locale === "fr" ? entry.pathEn : entry.pathFr} />
+    <SiteHeader locale={locale} copy={dictionary.home} page="contact" address={agencyContact.address} phone={agencyContact.phone} phoneDisplay={agencyContact.phoneDisplay} email={agencyContact.email} socials={agencyContact.socialLinks} languageHref={locale === "fr" ? entry.pathEn : entry.pathFr} />
     <main>
       <section className="bg-cream px-5 py-14 sm:px-8 md:py-20"><div className="mx-auto max-w-5xl"><Heading as="h1" eyebrow={entry.kind === "post" ? "Baobab · Blog" : locale === "fr" ? "Réalisation" : "Project"}>{entry.title}</Heading><p className="mt-5 text-lg leading-8 text-muted">{entry.excerpt}</p>{entry.date && <p className="mt-4 text-sm text-muted"><time dateTime={entry.date}>{entry.date}</time></p>}</div></section>
       <section className="px-5 py-14 sm:px-8"><div className="mx-auto grid max-w-5xl gap-5 md:grid-cols-2">{entry.sections.map(([title, body]) => <Card className="h-full" key={title || "body"}>{title && <h2 className="font-display text-2xl font-extrabold text-navy">{title}</h2>}<p className={`${title ? "mt-3" : ""} leading-7 text-muted`}>{body}</p></Card>)}</div></section>

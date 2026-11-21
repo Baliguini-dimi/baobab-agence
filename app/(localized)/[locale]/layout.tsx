@@ -5,7 +5,7 @@ import { connection } from "next/server";
 import { headers } from "next/headers";
 import { locales } from "@/content/schema";
 import { indexingEnabled, siteOrigin } from "@/lib/seo";
-import { agencyContact } from "@/config/contact";
+import { agencyContact, openingHours } from "@/config/contact";
 import { jsonLd } from "@/lib/seo";
 import { CookieConsentBanner } from "@/components/site/cookie-consent-banner";
 import messagesFr from "@/messages/fr.json";
@@ -52,6 +52,10 @@ export default async function LocaleLayout({
         telephone: agencyContact.phone,
         address: { "@type": "PostalAddress", streetAddress: agencyContact.address, addressLocality: "Abidjan", addressCountry: "CI" },
         geo: { "@type": "GeoCoordinates", latitude: agencyContact.latitude, longitude: agencyContact.longitude },
+        openingHoursSpecification: [
+          { "@type": "OpeningHoursSpecification", dayOfWeek: openingHours.weekdays.days, opens: openingHours.weekdays.opens, closes: openingHours.weekdays.closes },
+          { "@type": "OpeningHoursSpecification", dayOfWeek: openingHours.saturday.days, opens: openingHours.saturday.opens, closes: openingHours.saturday.closes },
+        ],
         parentOrganization: { "@type": "Organization", name: "Baobab" },
       },
     ],

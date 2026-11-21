@@ -70,7 +70,7 @@
   },
   "home": {
     "nav": { "home": "Home", "services": "Digital solutions", "ai": "AI & automation", "online": "Online presence", "media": "Media coverage", "projects": "Projects", "blog": "Blog", "contact": "Contact" },
-    "phone": "Phone", "email": "Email", "address": "Address", "socials": "Social media", "language": "Language",
+    "phone": "Phone", "call": "Call", "openMenu": "Open menu", "closeMenu": "Close menu", "email": "Email", "address": "Address", "socials": "Social media", "language": "Language",
     "heroEyebrow": "Digital agency · Abidjan",
     "heroTitle": "Useful digital solutions for businesses and institutions in Abidjan.",
     "heroSubtitle": "Websites, mobile apps, business tools, AI and online communications for SMEs, fintechs, schools, NGOs and public institutions.",
@@ -79,7 +79,7 @@
     "quickLinksTitle": "What we do",
     "aboutEyebrow": "About Baobab",
     "aboutTitle": "Rooted in Abidjan, looking toward tomorrow’s needs.",
-    "aboutBody": "Founded in Abidjan in 2026, Baobab brings together a team of around ten people and external providers to deliver digital and media projects.",
+    "aboutBody": "Baobab brings together a team of around ten people and external providers to deliver digital and media projects.",
     "factFounded": "Founded in", "factTeam": "Team", "factTeamValue": "Around ten people, alongside service providers.", "factLocation": "Based in",
     "challengesEyebrow": "Your priorities",
     "challengesTitle": "The right tool starts with the right need.",
@@ -111,7 +111,7 @@
     "demoClient": "Authorized client project",
     "demoType": "Demonstration",
     "demoAcademic": "Academic project",
-    "priceStarting": "Starting at", "priceMonthly": "/ month", "tax": "excl. tax", "usdIndicative": "Indicative USD", "priceNote": "BCEAO reference conversion on", "priceSupersedes": "The XOF amount excluding tax takes precedence.",
+    "priceStarting": "Starting at", "priceMonthly": "/ month", "tax": "excl. tax", "usdIndicative": "indicative", "priceNote": "BCEAO reference conversion on", "priceSupersedes": "The XOF amount excluding tax takes precedence.",
     "payment3x": "Three instalments may be available for projects above XOF 700,000.",
     "aiEyebrow": "AI & automation",
     "aiTitle": "Fewer repetitive tasks. More time for what matters.",
@@ -122,8 +122,8 @@
     "projectsEyebrow": "Projects", "projectsTitle": "Work shown with its context and outcome.", "projectsEmpty": "", "previewEmpty": "", "browserLabel": "", "projectContext": "Context", "projectSolution": "Solution", "projectResult": "Outcome",
     "testimonialsEyebrow": "Testimonials", "testimonialsTitle": "Trusted by our clients",
     "blogEyebrow": "Baobab journal", "blogTitle": "Notes, methods and digital ideas.", "blogEmpty": "",
-    "closingTitle": "Your next project begins with a conversation.", "closingCta": "Let’s talk about your project.",
-    "footerNote": "Digital agency founded in Abidjan in 2026.", "legal": "Legal information", "privacy": "Privacy", "cookies": "Cookies", "equipment": "Equipment · coming soon", "copyright": "Baobab. All rights reserved."
+    "closingTitle": "Tell us what you need. We’ll clarify scope and next steps.", "closingCta": "Let’s talk about your project.",
+    "footerNote": "Digital agency based in Abidjan.", "hoursTitle": "Opening hours", "hoursSummary": "Monday to Friday: 08:00–17:00 · Saturday: 08:00–12:00 · Sunday: closed.", "legal": "Legal information", "privacy": "Privacy", "cookies": "Cookies", "copyright": "Baobab. All rights reserved."
   },
   "contact": {
     "eyebrow": "Tell us what you need",
@@ -134,7 +134,7 @@
     "name": "Full name", "email": "Email address", "phone": "Phone", "organization": "Company or organisation", "message": "How can we help?", "submit": "Send request",
     "requestSubject": "Request subject", "contactRequest": "Question or general contact", "quoteDigital": "Quote · digital solutions", "quoteAi": "Quote · AI and automation", "quotePresence": "Quote · online presence", "quoteMedia": "Quote · media coverage", "quoteOther": "Quote · other need", "namePlaceholder": "e.g. Aïcha Kouassi", "emailPlaceholder": "e.g. aicha@company.ci", "phonePlaceholder": "e.g. +225 07 00 00 00 00", "organizationPlaceholder": "e.g. school, small business or NGO", "messagePlaceholder": "e.g. Describe your goal, audience and expected timeline.", "privacyNotice": "Your information is sent by email to Baobab through our email provider. This prototype does not store it in a database.",
     "validationError": "Check the fields and try again.", "captchaRequired": "Complete the bot check before sending.", "captchaUnavailable": "The form is temporarily unavailable. Please email us directly.", "sending": "Sending…", "sent": "Your request has been sent.", "serverError": "The request could not be sent. Try again later or email us directly.", "rateLimitError": "Too many requests have been sent. Wait before trying again.", "honeypotLabel": "Leave this blank",
-    "locationTitle": "Find us", "address": "Dokui, Abobo, Abidjan", "mapButton": "Show the map", "mapTitle": "Map of Dokui, Abobo, Abidjan", "mapNote": "The marker shows the GPS point provided.", "directions": "Directions", "googleMaps": "Google Maps", "waze": "Waze", "whatsapp": "WhatsApp", "hours": "Opening hours", "timeZone": "Time zone", "directContact": "Contact details", "notProvided": "To be provided"
+    "locationTitle": "Find us", "address": "Dokui, Abobo, Abidjan", "mapButton": "Show the map", "mapTitle": "Map of Dokui, Abobo, Abidjan", "mapNote": "The marker shows the GPS point provided.", "directions": "Directions", "googleMaps": "Google Maps", "waze": "Waze", "whatsapp": "WhatsApp", "hours": "Opening hours", "hoursSummary": "Monday to Friday: 08:00–17:00 · Saturday: 08:00–12:00 · Sunday: closed.", "directContact": "Contact details"
   },
   "cookieConsent": {
     "title": "Your cookie preferences", "body": "No audience measurement or advertising tools are enabled. You can reject or accept optional cookies; your choice will be remembered.", "reject": "Reject optional", "accept": "Accept", "details": "Learn more", "pageTitle": "Cookies and tracking", "pageBody": "At this stage, the site has no audience measurement or advertising. The Google Maps frame loads only after you click and may send connection data to Google.", "essentialOnly": "The baobab-cookie-consent cookie only remembers your choice (essential only or consent for optional cookies).", "preferenceCookie": "The contact form is protected by Cloudflare Turnstile; its widget may use technologies required for bot protection when you load it. Links to Google Maps and Waze open their external services.", "futureTracking": "No optional tracking is loaded on this prototype, even after acceptance. Any tracking added later must respect your choice before it loads."
