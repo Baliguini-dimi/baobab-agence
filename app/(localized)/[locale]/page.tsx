@@ -4,7 +4,8 @@ import { getOffers, getPosts, getProjects, getTestimonials } from "@/content/que
 import type { Locale, Offer } from "@/content/schema";
 import { formatIndicativeUsd, usdReference } from "@/config/currency";
 import { agencyContact } from "@/config/contact";
-import { ScrollMotionRoot, ScrollReveal, Parallax, Ticker } from "@/components/motion/motion";
+import { ScrollMotionRoot, Parallax, Ticker } from "@/components/motion/motion";
+import { ScrollReveal } from "@/components/motion/scroll-reveal";
 import { SiteHeader } from "@/components/site/site-header";
 import { SiteFooter } from "@/components/site/site-footer";
 import { Heading } from "@/components/ui/heading";
@@ -73,12 +74,12 @@ export default async function HomePage({ params }: { params: Promise<{ locale: L
     <main>
       <section className="hero-section px-5 py-14 sm:px-8 md:py-20">
         <div className="mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-[1.02fr_.98fr]">
-          <ScrollReveal className="relative z-10">
+          <div className="relative z-10">
             <p className="mb-5 text-xs font-bold uppercase tracking-[.18em] text-muted">{copy.heroEyebrow}</p>
             <h1 className="max-w-3xl font-display text-5xl font-extrabold leading-[.99] tracking-[-.06em] text-navy sm:text-6xl lg:text-7xl">{copy.heroTitle}</h1>
             <p className="mt-6 max-w-xl text-lg leading-8 text-muted">{copy.heroSubtitle}</p>
             <ButtonLink className="mt-8" href={`/${locale}/contact`}>{copy.heroCta}<span aria-hidden="true"> ↗</span></ButtonLink>
-          </ScrollReveal>
+          </div>
           <ScrollReveal delay={120}><Parallax><BaobabIllustration alt={copy.heroArtAlt} /></Parallax></ScrollReveal>
         </div>
       </section>

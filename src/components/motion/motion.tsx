@@ -4,42 +4,30 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
 
 export function ScrollMotionRoot() {
   useEffect(() => {
-    document.documentElement.dataset.motionReady = "true";
-    return () => { delete document.documentElement.dataset.motionReady; };
-  }, []);
-  return null;
-}
-
-export function ScrollReveal({
-  children,
-  className = "",
-  delay = 0,
-}: {
-  children: ReactNode;
-  className?: string;
-  delay?: number;
-}) {
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const element = ref.current;
-    if (!element) return;
+    const targets = Array.from(document.querySelectorAll<HTMLElement>('[data-reveal="pending"]'));
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduceMotion || !("IntersectionObserver" in window)) {
-      element.dataset.reveal = "visible";
+      targets.forEach((element) => { element.dataset.reveal = "visible"; });
       return;
     }
-    const observer = new IntersectionObserver(([entry]) => {
-      if (entry?.isIntersecting) {
-        element.dataset.reveal = "visible";
-        observer.disconnect();
-      }
-    }, { threshold: 0.12 });
-    observer.observe(element);
-    return () => observer.disconnect();
-  }, []);
 
-  return <div className={className} data-reveal="pending" data-reveal-delay={delay} ref={ref}>{children}</div>;
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && entry.target instanceof HTMLElement) {
+          entry.target.dataset.reveal = "visible";
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    targets.forEach((element) => observer.observe(element));
+    document.documentElement.dataset.motionReady = "true";
+
+    return () => {
+      observer.disconnect();
+      delete document.documentElement.dataset.motionReady;
+    };
+  }, []);
+  return null;
 }
 
 export function CountUp({
