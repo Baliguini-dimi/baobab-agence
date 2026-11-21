@@ -1,1 +1,110 @@
-[]
+[
+  {
+    "id": "offer-vitrine-site",
+    "status": "published",
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "category": "digitalSolutions",
+    "order": 1,
+    "prices": [{ "id": "price-vitrine-site", "amountXof": 150000, "cadence": "project", "startingAt": true }],
+    "translations": {
+      "fr": { "slug": "site-vitrine", "title": "Site vitrine", "summary": "Un site pour présenter votre activité et vos services.", "description": "Création d’un site vitrine adapté à votre activité." },
+      "en": { "slug": "business-website", "title": "Business website", "summary": "A website to present your work and services.", "description": "A business website shaped around your activity." }
+    }
+  },
+  {
+    "id": "offer-site-blog",
+    "status": "published",
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "category": "digitalSolutions",
+    "order": 2,
+    "prices": [{ "id": "price-site-blog", "amountXof": 300000, "cadence": "project", "startingAt": true }],
+    "translations": {
+      "fr": { "slug": "site-et-blog", "title": "Site + blog", "summary": "Un site vitrine avec un espace éditorial.", "description": "Création d’un site et d’un blog pour publier vos contenus." },
+      "en": { "slug": "website-and-blog", "title": "Website + blog", "summary": "A business website with an editorial space.", "description": "A website and blog setup for publishing your content." }
+    }
+  },
+  {
+    "id": "offer-ecommerce",
+    "status": "published",
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "category": "digitalSolutions",
+    "order": 3,
+    "prices": [{ "id": "price-ecommerce", "amountXof": 700000, "cadence": "project", "startingAt": true }],
+    "translations": {
+      "fr": { "slug": "e-commerce", "title": "E-commerce", "summary": "Une boutique en ligne pour vendre vos produits.", "description": "Création d’une solution e-commerce adaptée à votre catalogue." },
+      "en": { "slug": "e-commerce", "title": "E-commerce", "summary": "An online shop for selling your products.", "description": "An e-commerce solution tailored to your catalogue." }
+    }
+  },
+  {
+    "id": "offer-mobile-app",
+    "status": "published",
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "category": "digitalSolutions",
+    "order": 4,
+    "prices": [{ "id": "price-mobile-app", "amountXof": 1200000, "cadence": "project", "startingAt": true }],
+    "translations": {
+      "fr": { "slug": "application-mobile", "title": "Application mobile", "summary": "Une application mobile adaptée à un besoin défini.", "description": "Conception et développement d’une application mobile selon le périmètre du projet." },
+      "en": { "slug": "mobile-application", "title": "Mobile application", "summary": "A mobile app for a defined need.", "description": "Design and development of a mobile app based on the project scope." }
+    }
+  },
+  {
+    "id": "offer-business-software",
+    "status": "published",
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "category": "digitalSolutions",
+    "order": 5,
+    "prices": [{ "id": "price-business-software", "amountXof": 1250000, "cadence": "project", "startingAt": true }],
+    "translations": {
+      "fr": { "slug": "logiciel-metier", "title": "Logiciel métier", "summary": "Un outil numérique pour un processus métier.", "description": "Conception d’un logiciel métier selon les besoins et le périmètre convenu." },
+      "en": { "slug": "business-software", "title": "Business software", "summary": "A digital tool for a business process.", "description": "Business software designed around the agreed needs and scope." }
+    }
+  },
+  {
+    "id": "offer-ai-chatbot",
+    "status": "published",
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "category": "aiAutomation",
+    "order": 1,
+    "prices": [{ "id": "price-ai-chatbot", "amountXof": 200000, "cadence": "project", "startingAt": true }],
+    "translations": {
+      "fr": { "slug": "chatbot-ia", "title": "Chatbot IA", "summary": "Un assistant conversationnel pour un usage défini.", "description": "Mise en place d’un chatbot IA en fonction du périmètre et des contenus disponibles." },
+      "en": { "slug": "ai-chatbot", "title": "AI chatbot", "summary": "A conversational assistant for a defined use case.", "description": "An AI chatbot scoped around the intended use and available content." }
+    }
+  },
+  {
+    "id": "offer-community-management",
+    "status": "published",
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "category": "onlinePresence",
+    "order": 1,
+    "prices": [
+      { "id": "price-community-1", "amountXof": 150000, "cadence": "month", "startingAt": false },
+      { "id": "price-community-2", "amountXof": 300000, "cadence": "month", "startingAt": false },
+      { "id": "price-community-3", "amountXof": 600000, "cadence": "month", "startingAt": false }
+    ],
+    "translations": {
+      "fr": { "slug": "gestion-reseaux-sociaux", "title": "Community management", "summary": "Gestion de présence et de contenus sur les réseaux sociaux.", "description": "Accompagnement de votre présence sur les réseaux sociaux, selon le périmètre défini." },
+      "en": { "slug": "social-media-management", "title": "Social media management", "summary": "Social media presence and content management.", "description": "Support for your social media presence, based on an agreed scope." }
+    }
+  },
+  {
+    "id": "offer-media-coverage",
+    "status": "published",
+    "createdAt": "2026-11-21T00:00:00.000Z",
+    "updatedAt": "2026-11-21T00:00:00.000Z",
+    "category": "mediaCoverage",
+    "order": 1,
+    "prices": [{ "id": "price-media-coverage", "amountXof": 50000, "cadence": "project", "startingAt": true }],
+    "translations": {
+      "fr": { "slug": "couverture-mediatique", "title": "Couverture médiatique", "summary": "Couverture et production de contenus pour vos événements.", "description": "Couverture médiatique d’événement, selon le format et le périmètre convenus." },
+      "en": { "slug": "media-coverage", "title": "Media coverage", "summary": "Coverage and content production for your events.", "description": "Event media coverage based on the agreed format and scope." }
+    }
+  }
+]

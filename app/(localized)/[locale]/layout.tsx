@@ -5,7 +5,7 @@ import { locales } from "@/content/schema";
 import "@/styles/tokens.css";
 
 export const metadata: Metadata = {
-  title: { default: "Baobab — design system", template: "%s | Baobab" },
+  title: { default: "Baobab — solutions numériques à Abidjan", template: "%s | Baobab" },
   robots: { index: false, follow: false },
 };
 

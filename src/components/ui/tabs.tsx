@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, type KeyboardEvent, type ReactNode } from "react";
+import { useRef, useState, type CSSProperties, type KeyboardEvent, type ReactNode } from "react";
 
 export type TabItem = { id: string; label: string; content: ReactNode };
 
@@ -22,12 +22,12 @@ export function Tabs({ items, label = "Exemples de composants" }: { items: TabIt
 
   return (
     <div>
-      <div className="flex flex-wrap gap-2 border-b border-navy/10" role="tablist" aria-label={label}>
+      <div className="tabs-list flex flex-wrap gap-2" role="tablist" aria-label={label} style={{ "--tab-count": items.length, "--tab-index": active } as CSSProperties}>
         {items.map((item, index) => (
           <button
             aria-controls={`panel-${item.id}`}
             aria-selected={active === index}
-            className={`min-h-11 rounded-t-lg px-4 text-sm font-bold ${active === index ? "border-b-2 border-coral-hover text-navy" : "text-muted hover:text-navy"}`}
+            className={`min-h-11 flex-1 rounded-t-lg px-4 text-sm font-bold ${active === index ? "text-navy" : "text-muted hover:text-navy"}`}
             id={`tab-${item.id}`}
             key={item.id}
             onClick={() => setActive(index)}
@@ -41,7 +41,7 @@ export function Tabs({ items, label = "Exemples de composants" }: { items: TabIt
           </button>
         ))}
       </div>
-      <div aria-labelledby={`tab-${selected.id}`} className="pt-5" id={`panel-${selected.id}`} role="tabpanel" tabIndex={0}>
+      <div aria-labelledby={`tab-${selected.id}`} className="tab-panel pt-5" id={`panel-${selected.id}`} key={selected.id} role="tabpanel" tabIndex={0}>
         {selected.content}
       </div>
     </div>

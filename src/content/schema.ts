@@ -76,8 +76,19 @@ export interface OfferTranslation {
   description: string;
 }
 
+export type OfferCategory = "digitalSolutions" | "aiAutomation" | "onlinePresence" | "mediaCoverage";
+
+export interface OfferPrice {
+  id: string;
+  amountXof: number;
+  cadence: "project" | "month";
+  startingAt: boolean;
+}
+
 export interface Offer extends ContentBase {
+  category: OfferCategory;
   translations: Localized<OfferTranslation>;
+  prices: OfferPrice[];
   order: number;
 }
 
