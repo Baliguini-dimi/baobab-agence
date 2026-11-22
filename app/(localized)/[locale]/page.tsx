@@ -110,7 +110,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: L
         </div>
       </section>
 
-      {agencyMedia.about.length > 0 && <section className="px-5 pb-14 sm:px-8 md:pb-20" aria-label={locale === "fr" ? "Illustrations de travail" : "Work illustrations"}>
+      {agencyMedia.about.length > 0 && <section className="px-5 pb-14 sm:px-8 md:pb-20" aria-label={locale === "fr" ? "Scènes de travail" : "Work scenes"}>
         <div className="mx-auto max-w-7xl"><PreviewImageGallery images={agencyMedia.about} locale={locale} className="preview-image-gallery-two" /></div>
       </section>}
 
@@ -156,7 +156,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: L
       {agencyMedia.demos.length > 0 && <section className="bg-cream px-5 py-14 sm:px-8 md:py-20" id="interface-demos">
         <div className="mx-auto max-w-7xl">
           <Heading as="h2">{locale === "fr" ? "Interfaces de démonstration" : "Demo interfaces"}</Heading>
-          <p className="mt-4 max-w-2xl leading-7 text-muted">{locale === "fr" ? "Aperçu de trois interfaces fictives : gestion, médiathèque numérique et campus." : "A preview of three fictional interfaces: management, a digital library and a campus platform."}</p>
+          <p className="mt-4 max-w-2xl leading-7 text-muted">{locale === "fr" ? "Aperçu de trois interfaces : gestion, médiathèque numérique et campus." : "A preview of three interfaces: management, a digital library and a campus platform."}</p>
           <PreviewImageGallery images={agencyMedia.demos} locale={locale} className="preview-image-gallery-three mt-8" />
         </div>
       </section>}

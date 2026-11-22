@@ -91,7 +91,7 @@ Cibles : fintech, startups, PME, petits commerces, institutions et administratio
 - H1 d'accueil validé : FR « Des solutions numériques utiles aux entreprises et aux institutions d'Abidjan. » / EN « Useful digital solutions for businesses and institutions in Abidjan. »
 - Titres validés : « Ce que nous construisons », « Une équipe basée à Abidjan », « Comment nous travaillons », étapes « Écouter / Cadrer / Construire / Livrer » (EN : What we build / A team based in Abidjan / How we work / Listen / Define the scope / Build / Deliver). Appel à l'action final : « Entreprise, institution, école ou ONG : parlons de votre besoin. »
 - Header : barre supérieure marine (coordonnées et horaires, masquée au défilement), panneau logo marine, navigation crème, bouton corail ; en mobile, header marine de 56 px, bandeau « Appeler », menu hamburger accessible (focus, Échap).
-- Aucune photographie réelle de l’agence n’est encore fournie : l’illustration SVG du baobab reste l’accueil par défaut ; en Preview/développement, `BAOBAB_PREVIEW_MOCKUPS=true` montre le hero, des illustrations de travail, des scènes de couverture et trois interfaces fictives. Les portraits restent masqués tant que leurs rôles ne sont pas confirmés.
+- Aucune photographie réelle de l’agence n’est encore fournie : l’illustration SVG du baobab reste l’accueil par défaut ; en Preview/développement, `BAOBAB_PREVIEW_MOCKUPS=true` montre le hero, des scènes de travail et de couverture, ainsi que trois interfaces de démonstration. Les images n’ont pas de légendes visibles ; les portraits restent masqués tant que leurs rôles ne sont pas confirmés.
 - Carte Google Maps **chargée seulement au clic**, avec liens Google Maps, Waze et WhatsApp.
 
 ## 8. Règles de motion et de performance
@@ -150,7 +150,7 @@ Fichiers de reference presents dans le checkout #6 : `docs/phase-1-architecture.
 ## 11. Ce qui reste à faire
 
 **Contenu et marque (dépend du propriétaire)**
-- [x] Visuels préparés pour une Preview de test avec `next/image`; registre `docs/images.md`. L’option `BAOBAB_PREVIEW_MOCKUPS` reste désactivée par défaut ; lorsqu’elle vaut `true`, les illustrations de travail, scènes média et démonstrations d’interfaces sont aussi visibles. Le hero n’affiche plus la mention de génération demandée retirée par le propriétaire.
+- [x] Visuels préparés pour une Preview de test avec `next/image`; registre `docs/images.md`. L’option `BAOBAB_PREVIEW_MOCKUPS` reste désactivée par défaut ; lorsqu’elle vaut `true`, les scènes de travail, scènes média et démonstrations d’interfaces sont aussi visibles, sans légendes d’illustration sur les images.
 - [ ] Remplacer les maquettes par des photos réelles autorisées avant tout lancement public. Les correspondances fondateur/responsables restent à confirmer ; aucun nom ou rôle n’est associé aux portraits.
 - [ ] Photos réelles : équipe, portraits, bureau, équipe en action, extérieur du bureau, projets, médias. Accords écrits nécessaires pour les personnes reconnaissables.
 - [ ] Logo définitif en SVG (versions claire, sombre, icône seule), favicon, image de partage 1200 × 630.
@@ -220,3 +220,4 @@ Fichiers de reference presents dans le checkout #6 : `docs/phase-1-architecture.
 | 2026-11-22 | Création de `résumé.md` à la racine ; contenu, commits, branches, statuts GitHub et mesures Lighthouse recoupés avec le dépôt. |
 | 2026-11-22 | Phase images prototype : 12 visuels du lot joint préparés en WebP sans métadonnées, affichage privé derrière variable serveur, registre `docs/images.md`; les images générées restent interdites de publication. |
 | 2026-11-22 | Révision Preview images (commit `c414643`) : retrait de la mention visible sous le hero ; intégration des illustrations de travail, des exemples média et des trois interfaces fictives. Portraits gardés masqués faute de correspondances validées ; médianes Lighthouse mobile : LCP 2 369 ms, CLS 0, performance 92. |
+| 2026-11-22 | Révision demandée : retrait des légendes visibles de toutes les images de Preview, y compris les formulations d’illustration et d’interface fictive ; provenance et limites conservées en documentation interne. |

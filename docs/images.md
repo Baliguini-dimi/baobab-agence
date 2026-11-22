@@ -5,7 +5,7 @@ Mis à jour le 22 novembre 2026. Ce registre suit les fichiers joints à la dema
 ## Règles de publication
 
 - Les images fournies sont des maquettes générées par IA. Elles servent à l’aperçu de développement uniquement ; elles ne prouvent ni l’existence des locaux, ni la composition de l’équipe, ni une prestation réalisée.
-- `BAOBAB_PREVIEW_MOCKUPS=false` par défaut. Dans une Preview Vercel ou en développement seulement, cette variable serveur affiche les visuels ayant une destination confirmée : hero, illustrations de travail, exemples de couverture média et interfaces de démonstration. Le hero n’affiche plus de légende ; les autres légendes précisent qu’il s’agit d’illustrations, sans les présenter comme l’équipe ou des prestations réalisées par Baobab.
+- `BAOBAB_PREVIEW_MOCKUPS=false` par défaut. Dans une Preview Vercel ou en développement seulement, cette variable serveur affiche les visuels ayant une destination confirmée : hero, scènes de travail, exemples de couverture média et interfaces de démonstration. Les images ne portent pas de légendes visibles ; leur provenance générée et les limites de représentation restent consignées dans ce registre.
 - Chaque image a `origine = générée`, `accord de publication = à obtenir` et `publiable = non`. Ne pas activer la variable sur un site public.
 - Les JPG sources restent hors dépôt. Les WebP sont réencodés sans métadonnées. Les originaux vérifiés ne contenaient aucun champ EXIF.
 - Le composant `next/image` réserve les dimensions intrinsèques. Le hero est chargé en différé : il n’est pas préchargé, puisque le titre reste l’élément LCP sur mobile.

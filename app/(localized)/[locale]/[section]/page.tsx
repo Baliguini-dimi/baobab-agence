@@ -112,7 +112,6 @@ export default async function ContentPage({ params }: { params: Promise<{ locale
       {key === "media-coverage" && agencyMedia.mediaCoverage.length > 0 && <section className="bg-cream px-5 py-14 sm:px-8 md:py-20">
         <div className="mx-auto max-w-7xl">
           <h2 className="font-display text-3xl font-extrabold tracking-[-.02em] text-navy">{locale === "fr" ? "Exemples de scènes" : "Example scenes"}</h2>
-          <p className="mt-3 max-w-2xl leading-7 text-muted">{locale === "fr" ? "Ces illustrations montrent des formats possibles ; elles ne documentent pas des événements couverts par Baobab." : "These illustrations show possible formats; they do not document events covered by Baobab."}</p>
           <PreviewImageGallery images={agencyMedia.mediaCoverage} locale={locale} className="preview-image-gallery-two mt-8" />
         </div>
       </section>}
