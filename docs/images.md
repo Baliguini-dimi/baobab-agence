@@ -50,4 +50,17 @@ Mis à jour le 22 novembre 2026. Ce registre suit les fichiers joints à la dema
 
 Les fichiers intégrés respectent les limites demandées : hero ≤ 120 Ko, autres visuels ≤ 80 Ko, portraits ≤ 40 Ko. Le portrait `15-29-09` a été recadré en 4:5 centré sur le visage. Le hero utilise des dimensions intrinsèques 1280 × 853, `sizes` adapté à la grille desktop/mobile, `loading="lazy"` et aucun préchargement. Next.js sert AVIF ou WebP selon l’en-tête `Accept`.
 
-Les interfaces de démonstration sont visibles sur l’accueil, les scènes de travail sur l’accueil et À propos, et les exemples de couverture sur la page Couverture médiatique, uniquement lorsque `BAOBAB_PREVIEW_MOCKUPS=true` dans Preview/développement. Les quatre portraits restent préparés mais masqués tant que les personnes, rôles et correspondances ne sont pas confirmés. Le test Lighthouse sur la Preview avec le drapeau activé reste à effectuer après redéploiement ; les mesures précédentes ne valent pas mesure avant/après de cette version.
+Les interfaces de démonstration sont visibles sur l’accueil, les scènes de travail sur l’accueil et À propos, et les exemples de couverture sur la page Couverture médiatique, uniquement lorsque `BAOBAB_PREVIEW_MOCKUPS=true` dans Preview/développement. Les quatre portraits restent préparés mais masqués tant que les personnes, rôles et correspondances ne sont pas confirmés.
+
+### Lighthouse mobile sur la Preview `/fr`
+
+Mesure locale Lighthouse 13.6.0 / Chrome, simulation mobile, après le déploiement de la galerie (22 novembre 2026) :
+
+| Passage | Performance | LCP | CLS |
+|---|---:|---:|---:|
+| 1 | 77 | 3 195 ms | 0 |
+| 2 | 92 | 2 255 ms | 0 |
+| 3 | 92 | 2 369 ms | 0 |
+| Médiane | **92** | **2 369 ms** | **0** |
+
+Les médianes satisfont les seuils demandés (LCP < 2,5 s, CLS 0, performance ≥ 85), malgré une variabilité notable du premier passage. L’API PageSpeed Insights a répondu 429 ; il s’agit donc de Lighthouse local sur l’URL publique de Preview, pas d’un rapport PSI.

@@ -101,6 +101,7 @@ Cibles : fintech, startups, PME, petits commerces, institutions et administratio
 - Le H1 du hero est l'élément LCP : pas d'animation dessus.
 - Seuils à tenir sur la Preview (Lighthouse mobile, 3 passages, médiane) : **LCP sous 2,5 s, CLS 0, performance d'au moins 85**.
 - Dernière mesure vérifiée sur la Preview `/fr` (Lighthouse mobile, 3 passages, 22 novembre 2026, PR #7) : Performance **91 / 88 / 86** (médiane **88**), LCP **1 243 / 1 155 / 1 330 ms** (médiane **1 243 ms**), CLS **0 / 0 / 0** (médiane **0**). Mesures de laboratoire variables, distinctes des données terrain.
+- Mesure après intégration des visuels de Preview (Lighthouse local mobile, 3 passages, branche `phase/images-privees`, 22 novembre 2026) : Performance **77 / 92 / 92** (médiane **92**), LCP **3 195 / 2 255 / 2 369 ms** (médiane **2 369 ms**), CLS **0 / 0 / 0** (médiane **0**). Les médianes passent les seuils ; le premier passage était nettement plus lent.
 - **INP non mesurable en laboratoire** : à suivre avec des données réelles après le lancement.
 - L'API PageSpeed Insights a déjà renvoyé une erreur 429 (quota) : utiliser Lighthouse en local sur la Preview publique.
 
@@ -217,5 +218,5 @@ Fichiers de reference presents dans le checkout #6 : `docs/phase-1-architecture.
 |---|---|
 | 2026-11-22 | Document source fourni par le propriétaire : phases 1 à 3 septies, stack, principes et tâches restantes. |
 | 2026-11-22 | Création de `résumé.md` à la racine ; contenu, commits, branches, statuts GitHub et mesures Lighthouse recoupés avec le dépôt. |
-| 2026-11-22 | Phase images prototype : 12 visuels du lot joint préparés en WebP sans métadonnées, hero activable uniquement par variable serveur et légendé comme maquette IA, registre `docs/images.md`; les images générées restent interdites de publication. |
-| 2026-11-22 | Révision Preview images : retrait de la mention visible sous le hero ; intégration des illustrations de travail, des exemples média et des trois interfaces fictives. Portraits gardés masqués faute de correspondances validées. |
+| 2026-11-22 | Phase images prototype : 12 visuels du lot joint préparés en WebP sans métadonnées, affichage privé derrière variable serveur, registre `docs/images.md`; les images générées restent interdites de publication. |
+| 2026-11-22 | Révision Preview images (commit `c414643`) : retrait de la mention visible sous le hero ; intégration des illustrations de travail, des exemples média et des trois interfaces fictives. Portraits gardés masqués faute de correspondances validées ; médianes Lighthouse mobile : LCP 2 369 ms, CLS 0, performance 92. |
