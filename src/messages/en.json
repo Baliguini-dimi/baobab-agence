@@ -3,7 +3,7 @@
   "language": "English",
   "navigation": {
     "home": "Home",
-    "digitalSolutions": "Digital solutions",
+    "digitalSolutions": "Websites and apps",
     "aiAutomation": "AI and automation",
     "onlinePresence": "Online presence",
     "mediaCoverage": "Media coverage",
@@ -69,7 +69,7 @@
     "logoNote": "Text-only temporary mark"
   },
   "home": {
-    "nav": { "home": "Home", "services": "Digital solutions", "ai": "AI & automation", "online": "Online presence", "media": "Media coverage", "projects": "Projects", "blog": "Blog", "contact": "Contact" },
+    "nav": { "home": "Home", "services": "Our services", "digital": "Websites and apps", "ai": "AI and automation", "online": "Online presence", "media": "Media coverage", "projects": "Projects", "blog": "Blog", "contact": "Contact" },
     "phone": "Phone", "call": "Call", "openMenu": "Open menu", "closeMenu": "Close menu", "email": "Email", "address": "Address", "socials": "Social media", "language": "Language",
     "heroEyebrow": "Digital agency · Abidjan",
     "heroTitle": "Useful digital solutions for businesses and institutions in Abidjan.",

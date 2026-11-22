@@ -3,7 +3,7 @@
   "language": "Français",
   "navigation": {
     "home": "Accueil",
-    "digitalSolutions": "Solutions numériques",
+    "digitalSolutions": "Sites et applications",
     "aiAutomation": "IA et automatisation",
     "onlinePresence": "Présence en ligne",
     "mediaCoverage": "Couverture médiatique",
@@ -69,7 +69,7 @@
     "logoNote": "Logo provisoire en texte"
   },
   "home": {
-    "nav": { "home": "Accueil", "services": "Solutions numériques", "ai": "IA & automatisation", "online": "Présence en ligne", "media": "Couverture média", "projects": "Réalisations", "blog": "Blog", "contact": "Contact" },
+    "nav": { "home": "Accueil", "services": "Nos services", "digital": "Sites et applications", "ai": "IA et automatisation", "online": "Présence en ligne", "media": "Couverture médiatique", "projects": "Réalisations", "blog": "Blog", "contact": "Contact" },
     "phone": "Téléphone", "call": "Appeler", "openMenu": "Ouvrir le menu", "closeMenu": "Fermer le menu", "email": "Email", "address": "Adresse", "socials": "Réseaux sociaux", "language": "Langue",
     "heroEyebrow": "Agence numérique · Abidjan",
     "heroTitle": "Des solutions numériques utiles aux entreprises et aux institutions d’Abidjan.",

@@ -8,14 +8,12 @@ export function MotionObserver() {
 
   useLayoutEffect(() => {
     const root = document.documentElement;
-    root.dataset.motionReady = "true";
     const targets = Array.from(document.querySelectorAll<HTMLElement>("[data-motion-reveal='pending']"));
     const revealAll = () => targets.forEach((target) => { target.dataset.motionReveal = "visible"; });
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches || !("IntersectionObserver" in window)) {
       root.dataset.motionStatic = "true";
       revealAll();
       return () => {
-        delete root.dataset.motionReady;
         delete root.dataset.motionStatic;
       };
     }
@@ -31,7 +29,6 @@ export function MotionObserver() {
     targets.forEach((target) => observer.observe(target));
     return () => {
       observer.disconnect();
-      delete root.dataset.motionReady;
       delete root.dataset.motionStatic;
     };
   }, [pathname]);

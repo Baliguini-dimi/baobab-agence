@@ -8,7 +8,7 @@ import { Logo } from "@/components/brand/logo";
 import { SocialLinks } from "@/components/site/social-links";
 
 type Copy = {
-  nav: Record<"home" | "services" | "ai" | "online" | "media" | "contact", string>;
+  nav: Record<"home" | "services" | "digital" | "ai" | "online" | "media" | "contact", string>;
   phone: string;
   call: string;
   email: string;
@@ -94,7 +94,7 @@ export function SiteHeader({
 
   const root = "/" + locale;
   const languageTarget = languageHref ?? (locale === "fr" ? "/en" : "/fr") + (page === "contact" ? "/contact" : "");
-  const serviceNames = [copy.nav.services, copy.nav.ai, copy.nav.online, copy.nav.media];
+  const serviceNames = [copy.nav.digital, copy.nav.ai, copy.nav.online, copy.nav.media];
   const serviceKeys = ["digitalSolutions", "aiAutomation", "onlinePresence", "mediaCoverage"] as const;
   const aboutHref = root + "/" + (locale === "fr" ? "a-propos" : "about");
   const contactHref = root + "/contact";
