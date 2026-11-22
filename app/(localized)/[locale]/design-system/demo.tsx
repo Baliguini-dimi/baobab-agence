@@ -53,7 +53,7 @@ export default function DesignSystemDemo({ locale }: { locale: "fr" | "en" }) {
         <div className="relative mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[1.1fr_0.9fr]">
           <div className="max-w-3xl">
             <p className="mb-5 text-xs font-bold uppercase tracking-[0.18em] text-cream/75">{t.eyebrow}</p>
-            <h1 className="font-display text-5xl font-extrabold leading-[0.98] tracking-[-0.065em] text-cream sm:text-6xl lg:text-7xl">{t.heroTitle}</h1>
+            <h1 className="font-display text-5xl font-extrabold leading-[0.98] tracking-[-.02em] text-cream sm:text-6xl lg:text-7xl">{t.heroTitle}</h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-cream/85">{t.heroBody}</p>
             <div className="mt-8 flex flex-wrap gap-3">
               <a className="inline-flex min-h-12 items-center justify-center rounded-xl bg-coral px-5 py-3 text-sm font-bold text-navy-deep hover:bg-coral-hover" href="#components">{t.mainAction}</a>
@@ -65,7 +65,7 @@ export default function DesignSystemDemo({ locale }: { locale: "fr" | "en" }) {
               <span className="font-display text-sm font-extrabold uppercase tracking-[0.18em]">{t.brandLine}</span>
               <svg aria-hidden="true" className="mx-auto w-full max-w-sm text-navy/40" viewBox="0 0 420 170" fill="none"><path d="M38 85c0-44 75-70 172-70s172 26 172 70-75 70-172 70S38 129 38 85Z" stroke="currentColor" strokeWidth="1.5"/><path d="M73 85c0-31 59-50 137-50s137 19 137 50-59 50-137 50S73 116 73 85Z" stroke="currentColor" strokeWidth="1.5"/><path d="M110 85c0-19 43-32 100-32s100 13 100 32-43 32-100 32-100-13-100-32Z" stroke="currentColor" strokeWidth="1.5"/></svg>
               <div className="flex items-end justify-between gap-4">
-                <p className="max-w-52 font-display text-xl font-extrabold leading-tight tracking-tight">{t.visualCaption}</p>
+                <p className="max-w-52 font-display text-xl font-extrabold leading-tight tracking-[-.02em]">{t.visualCaption}</p>
                 <span className="font-display text-5xl font-extrabold tracking-[-0.08em] text-navy">01</span>
               </div>
             </div>
@@ -109,7 +109,7 @@ export default function DesignSystemDemo({ locale }: { locale: "fr" | "en" }) {
 
       <Section tone="navy" width="wide">
         <div className="flex flex-col gap-8 sm:flex-row sm:items-center sm:justify-between">
-          <div><p className="text-xs font-bold uppercase tracking-[0.16em] text-cream/70">{t.footer}</p><h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight text-cream">Baobab</h2></div>
+          <div><p className="text-xs font-bold uppercase tracking-[0.16em] text-cream/70">{t.footer}</p><h2 className="mt-3 font-display text-3xl font-extrabold tracking-[-.02em] text-cream">Baobab</h2></div>
           <div className="flex flex-wrap items-center gap-6"><Logo tone="light" /><span className="text-sm text-cream/70">{t.logoNote}</span></div>
         </div>
       </Section>
@@ -131,7 +131,7 @@ function ComponentSamples({ t, onOpen }: { t: DemoCopy; onOpen: () => void }) {
       </Card>
       <Card>
         <p className="text-xs font-bold uppercase tracking-[0.14em] text-muted">{t.cardLabel}</p>
-        <h3 className="mt-4 font-display text-2xl font-extrabold tracking-tight text-navy">{t.cardTitle}</h3>
+        <h3 className="mt-4 font-display text-2xl font-extrabold tracking-[-.02em] text-navy">{t.cardTitle}</h3>
         <p className="mt-3 leading-7 text-muted">{t.cardBody}</p>
       </Card>
       <Card>

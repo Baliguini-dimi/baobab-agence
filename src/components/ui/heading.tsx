@@ -17,14 +17,14 @@ const sizes = {
 
 export function Heading({ as: Element = "h2", eyebrow, number, children, className = "" }: HeadingProps) {
   return (
-    <div className="text-left">
+    <div className="text-left" data-motion-heading={Element !== "h1" ? "true" : undefined} data-motion-reveal={Element !== "h1" ? "pending" : undefined}>
       {(eyebrow || number) && (
         <div className="mb-3 flex items-center gap-3 text-xs font-bold uppercase tracking-[0.16em] text-muted">
           {number && <span className="font-display text-lg tracking-normal text-navy">{number}</span>}
           {eyebrow && <span>{eyebrow}</span>}
         </div>
       )}
-      <Element className={`font-display font-extrabold leading-[1.05] tracking-[-0.055em] text-navy ${sizes[Element]} ${className}`}>
+      <Element className={`font-display font-extrabold leading-[1.05] tracking-[-0.02em] text-navy ${sizes[Element]} ${className}`}>
         {children}
       </Element>
     </div>

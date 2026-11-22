@@ -36,7 +36,7 @@ export function Modal({
     >
       <div className="p-6 sm:p-8">
         <div className="mb-5 flex items-start justify-between gap-4">
-          <h2 className="font-display text-2xl font-extrabold tracking-tight text-navy" id="modal-title">{title}</h2>
+          <h2 className="font-display text-2xl font-extrabold tracking-[-.02em] text-navy" id="modal-title">{title}</h2>
           <button aria-label={closeLabel} className="rounded-lg px-3 py-2 text-sm font-bold text-navy hover:bg-stone" onClick={onClose} type="button">{closeLabel}</button>
         </div>
         {children}

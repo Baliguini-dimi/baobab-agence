@@ -20,7 +20,7 @@ export function ServicePlanComparison({ catalog, locale }: { catalog: ServicePla
           {catalog.plans.map((plan) => <th scope="col" key={plan.id}>
             <span className="plan-name">{plan.translations[locale].name}</span>
             <span className="plan-price">{new Intl.NumberFormat(locale === "fr" ? "fr-CI" : "en-US").format(plan.amountXof)} {locale === "fr" ? "FCFA" : "XOF"} HT</span>
-            <span className="plan-price-detail">≈ {formatIndicativeUsd(plan.amountXof)} USD / {locale === "fr" ? "mois" : "month"}</span>
+            <span className="plan-price-detail">≈ {formatIndicativeUsd(plan.amountXof)} / {locale === "fr" ? "mois" : "month"} · {locale === "fr" ? "indicatif" : "indicative"}</span>
           </th>)}
         </tr></thead>
         <tbody>{catalog.featureKeys.map((key) => <tr key={key}>
