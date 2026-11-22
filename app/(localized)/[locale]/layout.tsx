@@ -8,6 +8,7 @@ import { indexingEnabled, siteOrigin } from "@/lib/seo";
 import { agencyContact, openingHours } from "@/config/contact";
 import { jsonLd } from "@/lib/seo";
 import { CookieConsentBanner } from "@/components/site/cookie-consent-banner";
+import { MotionObserver } from "@/components/motion/motion-observer";
 import messagesFr from "@/messages/fr.json";
 import messagesEn from "@/messages/en.json";
 import "@/styles/tokens.css";
@@ -66,6 +67,7 @@ export default async function LocaleLayout({
       <body className={`${displayFont.variable} ${bodyFont.variable}`}>
         <script nonce={nonce} type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(organizationGraph) }} />
         <CookieConsentBanner copy={consentCopy} locale={locale as "fr" | "en"} />
+        <MotionObserver />
         {children}
       </body>
     </html>

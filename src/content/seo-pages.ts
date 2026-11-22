@@ -32,7 +32,7 @@ export const pageCopy: Record<Locale, Record<SeoPageKey, PageCopy>> = {
       title: "Solutions numériques",
       description: "Création de sites web, applications mobiles, e-commerce et logiciels métiers par une agence digitale à Abidjan.",
       eyebrow: "Concevoir et construire",
-      intro: "Agence web à Abobo et agence digitale à Abidjan, nous concevons des outils numériques adaptés à vos objectifs, à vos équipes et aux usages de vos clients.",
+      intro: "Nous concevons des outils numériques adaptés à vos objectifs, à vos équipes et aux usages de vos clients.",
       sections: [
         { heading: "Sites web et plateformes", body: "Sites vitrines, blogs et plateformes web pensés pour présenter votre activité et faciliter les échanges." },
         { heading: "E-commerce et applications", body: "Boutiques en ligne et applications mobiles conçues autour des parcours réels de vos utilisateurs." },
