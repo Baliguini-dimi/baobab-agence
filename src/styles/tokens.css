@@ -210,6 +210,9 @@ html[data-motion-ready="true"] .conversation-card[data-motion-reveal="pending"] 
   .hero-rings-panel { min-height: 250px; }
 }
 @media (max-width: 767px) {
+  .hero-rings path { animation: none; stroke-dasharray: none; stroke-dashoffset: 0; }
+}
+@media (max-width: 767px) {
   .site-header-inner, .site-header[data-compact="true"] .site-header-inner { height: 55px; min-height: 55px; max-height: 55px; padding-top: 0; padding-bottom: 0; }
 }
 
