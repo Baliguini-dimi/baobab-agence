@@ -105,7 +105,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: L
             <p className="mt-6 max-w-xl text-lg leading-8 text-muted">{copy.heroSubtitle}</p>
             <ButtonLink className="mt-8" href={"/" + locale + "/contact"}>{copy.heroCta}<ExternalArrowIcon /></ButtonLink>
           </div>
-          <div className="hero-art-wrap">{agencyMedia.hero.src && agencyMedia.hero.alt[locale] ? <div className="hero-image-frame"><Image alt={agencyMedia.hero.alt[locale]} className="hero-photo" fill priority sizes="(max-width: 1024px) 100vw, 48vw" src={agencyMedia.hero.src} /></div> : <BaobabRings />}</div>
+          <div className={`hero-art-wrap${agencyMedia.hero.src ? " hero-art-wrap-with-photo" : ""}`}>{agencyMedia.hero.src && agencyMedia.hero.alt[locale] ? <figure className="hero-image-figure"><div className="hero-image-frame"><Image alt={agencyMedia.hero.alt[locale]} className="hero-photo" height={agencyMedia.hero.height} loading="lazy" sizes="(max-width: 1024px) calc(100vw - 3rem), 46vw" src={agencyMedia.hero.src} width={agencyMedia.hero.width} /></div><figcaption className="hero-image-caption">{agencyMedia.hero.caption[locale]}</figcaption></figure> : <BaobabRings />}</div>
         </div>
       </section>
 
