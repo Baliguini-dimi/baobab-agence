@@ -211,6 +211,8 @@ html[data-motion-ready="true"] .conversation-card[data-motion-reveal="pending"] 
 }
 @media (max-width: 767px) {
   .hero-rings path { animation: none !important; stroke-dasharray: none; stroke-dashoffset: 0; }
+  .method-line-fill { animation: none !important; transform: scaleY(1) !important; }
+  .tab-panel { animation: none !important; }
 }
 @media (max-width: 767px) {
   .site-header-inner, .site-header[data-compact="true"] .site-header-inner { height: 55px; min-height: 55px; max-height: 55px; padding-top: 0; padding-bottom: 0; }
