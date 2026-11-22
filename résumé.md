@@ -62,7 +62,7 @@ Cibles : fintech, startups, PME, petits commerces, institutions et administratio
 3. Chaque réalisation porte un **statut obligatoire** : `client` (accord écrit de publication), `demo` (démo ou produit Baobab) ou `academique`. Sans accord écrit, un projet client est **anonymisé**.
 4. Les dépôts GitHub du propriétaire (bankflow, smartcampus-saas, mediatheque, BudgetTrak, etc.) sont des **démos, prototypes ou projets académiques** d'après leurs README. Ne jamais les présenter comme des projets livrés à des clients sans confirmation écrite du propriétaire.
 5. L'exemple de conversation WhatsApp (cacao en poudre) sur l'accueil est **fictif** et doit rester présenté comme tel.
-6. Aucune image de banque de photos ni image générée par IA dans le site public. Exception de prototype : les maquettes générées de `docs/images.md` peuvent apparaître dans la Preview noindex si `BAOBAB_PREVIEW_MOCKUPS=true`; le hero porte une mention visible, la production reste désactivée même si le drapeau est activé hors Preview et aucune maquette ne prouve une équipe, des locaux ou une réalisation. Aucune image dont l’accord de publication est « à obtenir » ne peut être publiée.
+6. Aucune image de banque de photos ni image générée par IA dans le site public. Exception de prototype : les visuels de `docs/images.md` peuvent apparaître dans la Preview noindex si `BAOBAB_PREVIEW_MOCKUPS=true`; ils sont réservés aux essais privés, ne prouvent ni l’équipe, ni les locaux, ni une réalisation, et restent désactivés en production. Aucune image dont l’accord de publication est « à obtenir » ne peut être publiée.
 
 ## 6. Stack technique
 
@@ -91,7 +91,7 @@ Cibles : fintech, startups, PME, petits commerces, institutions et administratio
 - H1 d'accueil validé : FR « Des solutions numériques utiles aux entreprises et aux institutions d'Abidjan. » / EN « Useful digital solutions for businesses and institutions in Abidjan. »
 - Titres validés : « Ce que nous construisons », « Une équipe basée à Abidjan », « Comment nous travaillons », étapes « Écouter / Cadrer / Construire / Livrer » (EN : What we build / A team based in Abidjan / How we work / Listen / Define the scope / Build / Deliver). Appel à l'action final : « Entreprise, institution, école ou ONG : parlons de votre besoin. »
 - Header : barre supérieure marine (coordonnées et horaires, masquée au défilement), panneau logo marine, navigation crème, bouton corail ; en mobile, header marine de 56 px, bandeau « Appeler », menu hamburger accessible (focus, Échap).
-- Aucune photographie réelle de l’agence n’est encore fournie : l’illustration SVG du baobab reste l’accueil par défaut ; la maquette IA du hero ne s’affiche que sur une Preview ou en développement avec `BAOBAB_PREVIEW_MOCKUPS=true`. Les emplacements photo de la page À propos restent masqués tant qu’il n’y a pas d’image autorisée.
+- Aucune photographie réelle de l’agence n’est encore fournie : l’illustration SVG du baobab reste l’accueil par défaut ; en Preview/développement, `BAOBAB_PREVIEW_MOCKUPS=true` montre le hero, des illustrations de travail, des scènes de couverture et trois interfaces fictives. Les portraits restent masqués tant que leurs rôles ne sont pas confirmés.
 - Carte Google Maps **chargée seulement au clic**, avec liens Google Maps, Waze et WhatsApp.
 
 ## 8. Règles de motion et de performance
@@ -125,7 +125,7 @@ Cibles : fintech, startups, PME, petits commerces, institutions et administratio
 | 6 | README et checklist de déploiement | PR #5, `0dcc1f3` |
 | 3 bis | Direction artistique, accueil redessiné, H1 FR/EN, formules en ligne, archives vides masquées | PR #6, `8fc70a9` |
 | 3 ter à 3 septies | Titres et pages éditoriales, motion CSS, corrections mobile, formulaire sujet/type fusionné (sécurité conservée), header distinctif | PR #7, dernier commit `fa1a9aa` |
-| Images (prototype) | Maquettes IA converties en WebP, hero de preview derrière `BAOBAB_PREVIEW_MOCKUPS`, registre des images ; rôles des portraits non attribués | Branche `phase/images-privees`, commit de cette phase |
+| Images (prototype) | Visuels convertis en WebP, emplacements Preview pour hero, travail, couverture et interfaces de démonstration derrière `BAOBAB_PREVIEW_MOCKUPS`, registre des images ; rôles des portraits non attribués | Branche `phase/images-privees` |
 
 ### État Git et des PR, vérifié le 22 novembre 2026
 
@@ -149,7 +149,7 @@ Fichiers de reference presents dans le checkout #6 : `docs/phase-1-architecture.
 ## 11. Ce qui reste à faire
 
 **Contenu et marque (dépend du propriétaire)**
-- [x] Maquettes générées préparées pour une Preview de test avec `next/image`; registre `docs/images.md`. L’option `BAOBAB_PREVIEW_MOCKUPS` reste désactivée par défaut et seule l’image hero confirmée est rendue lorsqu’elle vaut `true`.
+- [x] Visuels préparés pour une Preview de test avec `next/image`; registre `docs/images.md`. L’option `BAOBAB_PREVIEW_MOCKUPS` reste désactivée par défaut ; lorsqu’elle vaut `true`, les illustrations de travail, scènes média et démonstrations d’interfaces sont aussi visibles. Le hero n’affiche plus la mention de génération demandée retirée par le propriétaire.
 - [ ] Remplacer les maquettes par des photos réelles autorisées avant tout lancement public. Les correspondances fondateur/responsables restent à confirmer ; aucun nom ou rôle n’est associé aux portraits.
 - [ ] Photos réelles : équipe, portraits, bureau, équipe en action, extérieur du bureau, projets, médias. Accords écrits nécessaires pour les personnes reconnaissables.
 - [ ] Logo définitif en SVG (versions claire, sombre, icône seule), favicon, image de partage 1200 × 630.
@@ -218,3 +218,4 @@ Fichiers de reference presents dans le checkout #6 : `docs/phase-1-architecture.
 | 2026-11-22 | Document source fourni par le propriétaire : phases 1 à 3 septies, stack, principes et tâches restantes. |
 | 2026-11-22 | Création de `résumé.md` à la racine ; contenu, commits, branches, statuts GitHub et mesures Lighthouse recoupés avec le dépôt. |
 | 2026-11-22 | Phase images prototype : 12 visuels du lot joint préparés en WebP sans métadonnées, hero activable uniquement par variable serveur et légendé comme maquette IA, registre `docs/images.md`; les images générées restent interdites de publication. |
+| 2026-11-22 | Révision Preview images : retrait de la mention visible sous le hero ; intégration des illustrations de travail, des exemples média et des trois interfaces fictives. Portraits gardés masqués faute de correspondances validées. |

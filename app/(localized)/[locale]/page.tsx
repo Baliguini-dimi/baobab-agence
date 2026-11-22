@@ -15,6 +15,7 @@ import { agencyMedia } from "@/config/media";
 import messagesFr from "@/messages/fr.json";
 import messagesEn from "@/messages/en.json";
 import { pageMetadata } from "@/lib/seo";
+import { PreviewImageGallery } from "@/components/site/preview-image-gallery";
 
 type HomeCopy = typeof messagesFr.home;
 const dictionaries = { fr: messagesFr, en: messagesEn };
@@ -105,9 +106,13 @@ export default async function HomePage({ params }: { params: Promise<{ locale: L
             <p className="mt-6 max-w-xl text-lg leading-8 text-muted">{copy.heroSubtitle}</p>
             <ButtonLink className="mt-8" href={"/" + locale + "/contact"}>{copy.heroCta}<ExternalArrowIcon /></ButtonLink>
           </div>
-          <div className={`hero-art-wrap${agencyMedia.hero.src ? " hero-art-wrap-with-photo" : ""}`}>{agencyMedia.hero.src && agencyMedia.hero.alt[locale] ? <figure className="hero-image-figure"><div className="hero-image-frame"><Image alt={agencyMedia.hero.alt[locale]} className="hero-photo" height={agencyMedia.hero.height} loading="lazy" sizes="(max-width: 1024px) calc(100vw - 3rem), 46vw" src={agencyMedia.hero.src} width={agencyMedia.hero.width} /></div><figcaption className="hero-image-caption">{agencyMedia.hero.caption[locale]}</figcaption></figure> : <BaobabRings />}</div>
+          <div className={`hero-art-wrap${agencyMedia.hero ? " hero-art-wrap-with-photo" : ""}`}>{agencyMedia.hero ? <figure className="hero-image-figure"><div className="hero-image-frame"><Image alt={agencyMedia.hero.alt[locale]} className="hero-photo" height={agencyMedia.hero.height} loading="lazy" sizes="(max-width: 1024px) calc(100vw - 3rem), 46vw" src={agencyMedia.hero.src} width={agencyMedia.hero.width} /></div></figure> : <BaobabRings />}</div>
         </div>
       </section>
+
+      {agencyMedia.about.length > 0 && <section className="px-5 pb-14 sm:px-8 md:pb-20" aria-label={locale === "fr" ? "Illustrations de travail" : "Work illustrations"}>
+        <div className="mx-auto max-w-7xl"><PreviewImageGallery images={agencyMedia.about} locale={locale} className="preview-image-gallery-two" /></div>
+      </section>}
 
       <section aria-label={copy.servicesTitle} className="px-5 py-14 sm:px-8 md:py-20" id="services">
         <div className="mx-auto max-w-7xl">
@@ -147,6 +152,14 @@ export default async function HomePage({ params }: { params: Promise<{ locale: L
           </div>
         </div>
       </section>
+
+      {agencyMedia.demos.length > 0 && <section className="bg-cream px-5 py-14 sm:px-8 md:py-20" id="interface-demos">
+        <div className="mx-auto max-w-7xl">
+          <Heading as="h2">{locale === "fr" ? "Interfaces de démonstration" : "Demo interfaces"}</Heading>
+          <p className="mt-4 max-w-2xl leading-7 text-muted">{locale === "fr" ? "Aperçu de trois interfaces fictives : gestion, médiathèque numérique et campus." : "A preview of three fictional interfaces: management, a digital library and a campus platform."}</p>
+          <PreviewImageGallery images={agencyMedia.demos} locale={locale} className="preview-image-gallery-three mt-8" />
+        </div>
+      </section>}
 
       <section className="bg-navy px-5 py-14 text-cream sm:px-8 md:py-20" id="ia-example">
         <div className="mx-auto grid max-w-7xl gap-9 lg:grid-cols-[.9fr_1.1fr] lg:items-center">
