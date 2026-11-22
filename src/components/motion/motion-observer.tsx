@@ -11,7 +11,7 @@ export function MotionObserver() {
     root.dataset.motionReady = "true";
     const targets = Array.from(document.querySelectorAll<HTMLElement>("[data-motion-reveal='pending']"));
     const revealAll = () => targets.forEach((target) => { target.dataset.motionReveal = "visible"; });
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches || window.matchMedia("(max-width: 767px)").matches || !("IntersectionObserver" in window)) {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches || !("IntersectionObserver" in window)) {
       root.dataset.motionStatic = "true";
       revealAll();
       return () => {
