@@ -93,7 +93,7 @@ export default async function ContentPage({ params }: { params: Promise<{ locale
     {faqSchema && <script nonce={nonce} type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faqSchema) }} />}
     {breadcrumbSchema && <script nonce={nonce} type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(breadcrumbSchema) }} />}
     {serviceSchema && <script nonce={nonce} type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(serviceSchema) }} />}
-    <SiteHeader locale={locale} copy={dict.home} page="contact" address={agencyContact.address} phone={agencyContact.phone} phoneDisplay={agencyContact.phoneDisplay} email={agencyContact.email} socials={agencyContact.socialLinks} languageHref={languagePath(locale === "fr" ? "en" : "fr")} />
+    <SiteHeader locale={locale} copy={dict.home} address={agencyContact.address} phone={agencyContact.phone} phoneDisplay={agencyContact.phoneDisplay} email={agencyContact.email} hoursLabel={dict.home.hoursTitle} hoursSummary={dict.home.hoursSummary} currentPath={currentUrl} languageHref={languagePath(locale === "fr" ? "en" : "fr")} />
     <main>
       <section className="bg-cream px-5 py-14 sm:px-8 md:py-20">
         <div className="mx-auto max-w-7xl"><Heading as="h1" eyebrow={copy.eyebrow}>{copy.title}</Heading>{!(["about", "digital-solutions", "ai-automation", "online-presence", "media-coverage", "faq"] as SeoPageKey[]).includes(key) && <p className="mt-5 max-w-3xl text-lg leading-8 text-muted">{copy.intro}</p>}

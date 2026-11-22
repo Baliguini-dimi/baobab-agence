@@ -95,7 +95,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: L
   const priceDate = locale === "fr" ? usdReference.displayDateFr : usdReference.displayDateEn;
 
   return <>
-    <SiteHeader locale={locale} copy={copy} page="home" address={agencyContact.address} phone={agencyContact.phone} phoneDisplay={agencyContact.phoneDisplay} email={agencyContact.email} socials={agencyContact.socialLinks} />
+    <SiteHeader locale={locale} copy={copy} address={agencyContact.address} phone={agencyContact.phone} phoneDisplay={agencyContact.phoneDisplay} email={agencyContact.email} hoursLabel={copy.hoursTitle} hoursSummary={copy.hoursSummary} currentPath={`/${locale}`} />
     <main>
       <section className="hero-section px-5 py-14 sm:px-8 md:py-20">
         <div className="mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-[1.05fr_.95fr]">

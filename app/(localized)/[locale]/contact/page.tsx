@@ -45,7 +45,7 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
   const whatsapp = getWhatsAppUrl();
 
   return <>
-    <SiteHeader locale={locale} copy={homeCopy} page="contact" address={agencyContact.address} phone={agencyContact.phone} phoneDisplay={agencyContact.phoneDisplay} email={agencyContact.email} socials={agencyContact.socialLinks} />
+    <SiteHeader locale={locale} copy={homeCopy} address={agencyContact.address} phone={agencyContact.phone} phoneDisplay={agencyContact.phoneDisplay} email={agencyContact.email} hoursLabel={dictionaries[locale].home.hoursTitle} hoursSummary={dictionaries[locale].home.hoursSummary} currentPath={`/${locale}/contact`} />
     <main>
         <section className="bg-cream px-5 py-14 sm:px-8 md:py-20"><div className="mx-auto max-w-7xl"><Heading as="h1" className="contact-page-title" eyebrow={copy.eyebrow}>{copy.title}</Heading><p className="mt-5 max-w-2xl text-lg leading-8 text-muted">{copy.subtitle}</p></div></section>
       <section className="px-5 py-14 sm:px-8 md:py-20"><div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[1.1fr_.9fr]">
