@@ -27,6 +27,7 @@ export function PreviewImageGallery({
               width={image.width}
             />
           </div>
+          <figcaption className="preview-image-caption">{image.caption[locale]}</figcaption>
         </figure>
       ))}
     </div>
