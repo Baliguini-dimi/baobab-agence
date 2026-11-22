@@ -47,18 +47,21 @@ function xof(amount: number, locale: Locale) {
 
 function OfferCard({ offer, category, locale, name, copy, index }: { offer: Offer; category: OfferCategory; locale: Locale; name: string; copy: HomeCopy; index: number }) {
   const price = offer.prices[0];
-  return <Link aria-label={`${name}: ${offer.translations[locale].title}`} className="block h-full" href={"/" + locale + "/" + categoryRoutes[category][locale]}>
-    <Card as="article" className="offer-card flex h-full min-h-64 flex-col" data-motion-delay={index * 60} data-motion-reveal="pending" padded={false}>
-      <p className="text-xs font-bold uppercase tracking-[.12em] text-muted">{name}</p>
-      <h3 className="mt-4 font-display text-2xl font-extrabold leading-tight tracking-[-.02em] text-navy">{offer.translations[locale].title}</h3>
-      <p className="mt-3 flex-1 leading-7 text-muted">{offer.translations[locale].summary}</p>
-      <p className="mt-6 border-t border-navy/10 pt-4 text-sm font-bold text-navy">
-        <span className="mr-1 text-xs font-semibold text-muted">{copy.priceStarting}</span>{xof(price.amountXof, locale)}
-        {price.cadence === "month" && <span className="ml-1 text-xs font-semibold text-muted">{copy.priceMonthly}</span>}
-        <span className="price-tax ml-1 text-xs font-semibold text-muted">{copy.tax}</span>
-        <span className="price-usd mt-1 block text-xs font-normal text-muted">≈ {formatIndicativeUsd(price.amountXof)} · {copy.usdIndicative}</span>
-      </p>
-      <span aria-hidden="true" className="offer-card-arrow mt-4 inline-flex items-center text-sm font-bold text-navy"><ExternalArrowIcon /></span>
+  return <Link aria-label={`${name}: ${offer.translations[locale].title}`} className="offer-card-link block h-full" href={"/" + locale + "/" + categoryRoutes[category][locale]}>
+    <Card as="article" className="offer-card" data-motion-delay={index * 60} data-motion-reveal="pending" padded={false}>
+      <div className="offer-card-content">
+        <p className="offer-card-eyebrow">{name}</p>
+        <h3 className="offer-card-title">{offer.translations[locale].title}</h3>
+        <p className="offer-card-summary">{offer.translations[locale].summary}</p>
+      </div>
+      <div className="offer-card-footer">
+        <p className="offer-card-pricing">
+          <span className="offer-card-starting">{copy.priceStarting}</span>
+          <strong>{xof(price.amountXof, locale)}{price.cadence === "month" && <span className="offer-card-cadence"> {copy.priceMonthly}</span>}<span className="price-tax"> {copy.tax}</span></strong>
+          <span className="price-usd">≈ {formatIndicativeUsd(price.amountXof)} · {copy.usdIndicative}</span>
+        </p>
+        <span aria-hidden="true" className="offer-card-arrow"><ExternalArrowIcon /></span>
+      </div>
     </Card>
   </Link>;
 }
@@ -118,7 +121,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: L
         <div className="mx-auto max-w-7xl">
           <Heading as="h2">{copy.servicesTitle}</Heading>
           <p className="mt-4 max-w-2xl leading-7 text-muted">{copy.servicesIntro}</p>
-          <div className="mt-9 grid auto-rows-fr gap-4 sm:grid-cols-2 xl:grid-cols-4">
+          <div className="mt-9 offer-grid">
             {featuredOffers.map(({ category, offer }, index) => <OfferCard category={category} copy={copy} index={index} key={category} locale={locale} name={categoryNames[category]} offer={offer} />)}
           </div>
           <p className="mt-5 text-xs text-muted">{copy.priceNote} {priceDate}. {copy.priceSupersedes}</p>
