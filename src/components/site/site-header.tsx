@@ -89,7 +89,7 @@ export function SiteHeader({
         </nav>
         <div className="desktop-header-actions items-center gap-3">
           <Link aria-label={locale === "fr" ? "English" : "Français"} className="language-switch" href={languageTarget} lang={locale === "fr" ? "en" : "fr"}>{locale === "fr" ? "EN" : "FR"}</Link>
-          <Link className="header-quote-button inline-flex min-h-11 items-center justify-center gap-1 rounded-md bg-coral px-4 py-2 text-sm font-bold text-navy-deep" href={contactHref}>{copy.heroCta}<ExternalArrowIcon /></Link>
+          <Link className="header-quote-button inline-flex min-h-11 items-center justify-center gap-1 rounded-md bg-accent px-4 py-2 text-sm font-bold text-navy" href={contactHref}>{copy.heroCta}<ExternalArrowIcon /></Link>
         </div>
       </div>
       <MobileMenu locale={locale} copy={copy} root={root} contactHref={contactHref} currentPath={currentPath} languageTarget={languageTarget} />

@@ -20,7 +20,7 @@ const swatches = [
   { token: "cream", className: "bg-cream" },
   { token: "paper", className: "bg-paper" },
   { token: "stone", className: "bg-stone" },
-  { token: "coral", className: "bg-coral" },
+  { token: "orange", className: "bg-accent" },
 ] as const;
 
 type Widen<T> = { [Key in keyof T]: T[Key] extends string ? string : Widen<T[Key]> };
@@ -56,7 +56,7 @@ export default function DesignSystemDemo({ locale }: { locale: "fr" | "en" }) {
             <h1 className="font-display text-5xl font-extrabold leading-[0.98] tracking-[-.02em] text-cream sm:text-6xl lg:text-7xl">{t.heroTitle}</h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-cream/85">{t.heroBody}</p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <a className="inline-flex min-h-12 items-center justify-center rounded-xl bg-coral px-5 py-3 text-sm font-bold text-navy-deep hover:bg-coral-hover" href="#components">{t.mainAction}</a>
+              <a className="inline-flex min-h-12 items-center justify-center rounded-xl bg-accent px-5 py-3 text-sm font-bold text-navy hover:bg-accent-hover" href="#components">{t.mainAction}</a>
               <button className="inline-flex min-h-12 items-center justify-center rounded-xl border border-cream/35 px-5 py-3 text-sm font-bold text-cream hover:bg-cream/10" onClick={openModal} type="button">{t.secondaryAction}</button>
             </div>
           </div>
@@ -88,7 +88,7 @@ export default function DesignSystemDemo({ locale }: { locale: "fr" | "en" }) {
         </div>
         <div className="mt-8 grid gap-4 md:grid-cols-2">
           <div className="rounded-2xl bg-cream p-6"><p className="text-xs font-bold uppercase tracking-[0.14em] text-muted">{t.contrastHeading}</p><p className="mt-2 font-semibold text-ink">{t.contrastBody}</p><p className="mt-1 text-sm text-muted">{t.contrastNote}</p></div>
-          <div className="rounded-2xl bg-coral p-6 text-navy-deep"><p className="text-xs font-bold uppercase tracking-[0.14em]">{t.actionHeading}</p><p className="mt-2 font-semibold">{t.actionBody}</p><p className="mt-1 text-sm">{t.actionNote}</p></div>
+          <div className="rounded-2xl bg-accent p-6 text-navy"><p className="text-xs font-bold uppercase tracking-[0.14em]">{t.actionHeading}</p><p className="mt-2 font-semibold">{t.actionBody}</p><p className="mt-1 text-sm">{t.actionNote}</p></div>
         </div>
       </Section>
 
@@ -127,7 +127,7 @@ function ComponentSamples({ t, onOpen }: { t: DemoCopy; onOpen: () => void }) {
     <div className="grid gap-6 lg:grid-cols-2">
       <Card>
         <p className="text-xs font-bold uppercase tracking-[0.14em] text-muted">{t.components}</p>
-        <div className="mt-5 flex flex-wrap items-center gap-3"><Button>{t.mainAction}</Button><Button variant="secondary">{t.secondaryAction}</Button><Badge tone="coral">2026</Badge><Badge>Baobab</Badge><Badge tone="navy">Abidjan</Badge></div>
+        <div className="mt-5 flex flex-wrap items-center gap-3"><Button>{t.mainAction}</Button><Button variant="secondary">{t.secondaryAction}</Button><Badge tone="accent">2026</Badge><Badge>Baobab</Badge><Badge tone="navy">Abidjan</Badge></div>
       </Card>
       <Card>
         <p className="text-xs font-bold uppercase tracking-[0.14em] text-muted">{t.cardLabel}</p>

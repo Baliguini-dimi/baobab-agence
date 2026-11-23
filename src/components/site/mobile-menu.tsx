@@ -89,7 +89,7 @@ export function MobileMenu({ locale, copy, root, contactHref, currentPath, langu
         <Link className="mobile-navigation-link" href={`${root}/${locale === "fr" ? "a-propos" : "about"}`} {...linkProps(`${root}/${locale === "fr" ? "a-propos" : "about"}`)}>{locale === "fr" ? "À propos" : "About"}</Link>
         <Link className="mobile-navigation-link" href={`${root}/faq`} {...linkProps(`${root}/faq`)}>FAQ</Link>
         <Link className="mobile-navigation-link" href={contactHref} {...linkProps(contactHref)}>{copy.nav.contact}</Link>
-        <Link className="mobile-quote-button mt-3 inline-flex min-h-12 items-center justify-center gap-1 rounded-md bg-coral px-4 py-3 text-center text-sm font-bold text-navy-deep" href={contactHref} onClick={closeMenu}>{copy.heroCta}<ExternalArrowIcon /></Link>
+        <Link className="mobile-quote-button mt-3 inline-flex min-h-12 items-center justify-center gap-1 rounded-md bg-accent px-4 py-3 text-center text-sm font-bold text-navy" href={contactHref} onClick={closeMenu}>{copy.heroCta}<ExternalArrowIcon /></Link>
       </div>
     </nav>
   </>;
