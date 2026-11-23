@@ -1,32 +1,41 @@
-# Phase 2 — Système visuel proposé
+# Phase 2 - Systeme visuel adopte
 
-La proposition est volontairement éditoriale : marine institutionnel, surfaces crème/papier, gris doux et accent corail. La maquette emploie un bloc décalé, un motif discret, des numéros, des cartes à ombre douce et un logo provisoire uniquement textuel.
+Direction visuelle éditoriale : marine institutionnel, surfaces crème et papier, gris doux et accent orange. Le baobab est le symbole de marque.
 
-## Palette à valider
+## Palette de marque
 
-| Token | Valeur | Usage proposé |
+| Token | Valeur | Usage |
 | --- | --- | --- |
-| `navy` | `#102B46` | Couleur dominante, titres et fonds institutionnels |
-| `navy-deep` | `#0A1D30` | Fonds profonds et texte sur corail |
-| `cream` | `#F5F0E6` | Fonds chauds |
+| `navy` | `#102A43` | Titres, navigation et fonds identitaires |
+| `navy-deep` | `#0A1D30` | Fonds sombres, notamment la barre haute et le pied de page |
+| `cream` | `#F8F3E8` | Fonds chauds et logo clair sur marine |
 | `paper` | `#FFFCF6` | Fond principal |
-| `stone` | `#E9EDF0` | Surfaces grises et badges |
-| `stone-deep` | `#D4DCE3` | Séparateurs et variations grises |
-| `coral` | `#F47A63` | Boutons et détails, avec texte foncé |
-| `coral-hover` | `#DE604B` | État de survol des boutons |
+| `stone` | `#E9EDF0` | Surfaces grises |
+| `stone-deep` | `#D4DCE3` | Séparateurs |
+| `accent` | `#F17620` | Boutons pleins et petits détails |
+| `accent-hover` | `#F88431` | Survol des boutons |
 | `ink` | `#14202B` | Texte courant |
 | `muted` | `#526273` | Texte secondaire |
 
-Contrastes calculés pour les paires principales : marine sur crème `12.70:1`, encre sur papier `16.13:1`, secondaire sur crème `5.51:1`, texte marine profond sur corail `6.34:1` et focus sur papier `7.19:1`. Elles dépassent le seuil WCAG AA de texte courant. L’accent corail ne sert pas de texte courant sur les fonds clairs.
+## Contrastes WCAG calculés
 
-Tous les tokens couleur, typographiques, ombres et le motif sont centralisés dans `src/styles/tokens.css`. Le fichier importe Tailwind CSS 4 et expose ses variables à Tailwind via `@theme`; cela garde les valeurs visuelles dans un seul fichier sans configuration JavaScript séparée.
+- Texte marine `#102A43` sur crème `#F8F3E8` : **13,23:1** (AA/AAA).
+- Texte marine sur orange `#F17620` : **5,13:1** (AA). Le bouton utilise ce couple de couleurs.
+- Texte navy-deep `#0A1D30` sur orange : **5,97:1** (AA).
+- Orange sur crème : **2,58:1**. Il ne convient pas au texte ni aux filets fins sur crème.
+- Indicateur actif du header : filet marine sur crème, **13,23:1**, au-dessus du seuil non textuel de 3:1.
+- Focus `#145B83` sur crème : **6,65:1**. Logo crème sur marine deep : **15,41:1**.
 
-## Composants inclus
+Les tokens couleur, typographiques et les ombres sont centralises dans `src/styles/tokens.css`, exposes a Tailwind CSS 4 par `@theme`. Les alias `coral` gardent intacte la classe existante du bouton de formulaire ; ils pointent vers l accent orange. Le composant et la logique du formulaire ne sont pas modifies dans cette phase.
 
-`Button`, `Card`, `Section`, `Heading`, `Badge`, `Tabs`, `Modal`, `FormField` et le mot-symbole provisoire `Logo`. Tabs accepte les flèches gauche/droite; Modal s’appuie sur `<dialog>` natif. Les composants évitent d’imposer une API de marque ou un logo final.
+## Composants et typographie
 
-## Démonstration
+Composants partages : `Button`, `Card`, `Section`, `Heading`, `Badge`, `Tabs`, `Modal`, `FormField` et `Logo`. Plus Jakarta Sans est chargee avec `next/font`.
 
-La page `/fr/design-system` et sa version anglaise `/en/design-system` montrent la palette, les polices Manrope et Inter chargées via `next/font`, les boutons, badges, cartes, tabs, fenêtre modale et champ de formulaire. La racine redirige vers `/fr` sans géolocalisation; pendant cette phase de démonstration, `/fr` et `/en` redirigent vers la page du système visuel. Les deux racines de layout gardent `noindex, nofollow`.
+## Logo, icônes et partage
 
-Cette étape ajoute la fondation Next.js 16 et Tailwind CSS 4 afin que la démo soit exécutable. Aucun déploiement ni push n’a lieu dans cette phase.
+Les six fichiers fournis par le propriétaire sont conservés dans `public/brand/`. La version claire est marine/orange ; la version sombre est crème/orange. Les versions horizontales combinent les tracés d'origine avec `clipPath` sans en modifier la géométrie. Le composant de marque charge le SVG avec `<img>` et des dimensions explicites.
+
+Les variantes monochrome et symbole seul sont fournies. `app/icon.svg` est simplifie pour rester lisible a 16 px ; `app/favicon.ico` comporte les tailles 16, 32 et 48 px. Les PNG sont `app/apple-icon.png` (180), `app/icon1.png` (192) et `app/icon2.png` (512).
+
+L'image `public/brand/baobab-partage-1200x630.png` alimente Open Graph et Twitter. `SITE_URL` configure `metadataBase` et les valeurs `og:url` absolues ; `VERCEL_URL` est utilisé en Preview quand `SITE_URL` n'est pas défini.

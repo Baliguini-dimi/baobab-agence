@@ -1,7 +1,7 @@
 # Baobab, site vitrine de l'agence : résumé du projet
 
 > **À lire en premier** par tout développeur ou outil d'IA qui reprend ce projet.
-> Dernière mise à jour : 22 novembre 2026. Mets à jour ce fichier à la fin de chaque phase (voir « Règles de mise à jour »).
+> Derniere mise a jour: 23 novembre 2026. Voir la section 15 pour les regles de mise a jour.
 > Ce fichier décrit l'état connu du projet. Si le code et ce fichier se contredisent, **le code fait foi** : signale l'écart au propriétaire au lieu de deviner.
 
 ---
@@ -20,7 +20,7 @@ Site vitrine bilingue (français et anglais) de **Baobab**, agence numérique fo
 
 | Élément | Valeur |
 |---|---|
-| Nom | Baobab (logo provisoire en texte, pas de logo définitif) |
+| Nom | Baobab (logo fourni : SVG clair, sombre, horizontal, icône, favicon et aperçu ; première version générée par IA puis vectorisée) |
 | Fondée | 2026 |
 | Équipe | « Une dizaine de personnes, avec des prestataires » (ne jamais préciser un chiffre exact) |
 | Adresse | Dokui, Abobo, Abidjan, Côte d'Ivoire. Repère : à côté de la pharmacie Les 4 Saisons (carrefour du lycée Adama Sanogo) |
@@ -30,6 +30,7 @@ Site vitrine bilingue (français et anglais) de **Baobab**, agence numérique fo
 | Horaires | Lundi au vendredi 08h00-17h00, samedi 08h00-12h00, dimanche fermé |
 | Réseaux sociaux | Pas encore d'URL : les liens sont masqués |
 | Domaine | Pas encore choisi. Adresse provisoire : `baobab-agence.vercel.app` |
+| Palette de marque | Marine `#102A43`, orange `#F17620`, creme `#F8F3E8` |
 
 **Ne pas confondre** Dokui à Abobo (adresse réelle) avec Plateau Dokui à Cocody. Ne jamais écrire « Cocody » ou « Plateau » pour l'adresse de l'agence.
 
@@ -62,7 +63,7 @@ Cibles : fintech, startups, PME, petits commerces, institutions et administratio
 3. Chaque réalisation porte un **statut obligatoire** : `client` (accord écrit de publication), `demo` (démo ou produit Baobab) ou `academique`. Sans accord écrit, un projet client est **anonymisé**.
 4. Les dépôts GitHub du propriétaire (bankflow, smartcampus-saas, mediatheque, BudgetTrak, etc.) sont des **démos, prototypes ou projets académiques** d'après leurs README. Ne jamais les présenter comme des projets livrés à des clients sans confirmation écrite du propriétaire.
 5. L'exemple de conversation WhatsApp (cacao en poudre) sur l'accueil est **fictif** et doit rester présenté comme tel.
-6. Aucune image de banque de photos ni image générée par IA dans le site public. Exception de prototype : les visuels de `docs/images.md` peuvent apparaître dans la Preview noindex si `BAOBAB_PREVIEW_MOCKUPS=true`; ils sont réservés aux essais privés, ne prouvent ni l’équipe, ni les locaux, ni une réalisation, et restent désactivés en production. Aucune image dont l’accord de publication est « à obtenir » ne peut être publiée.
+6. Aucune image de banque de photos ni image générée par IA dans le site public. Exception de marque : le logo fourni, issu d’une première version générée par IA puis vectorisée, est un actif de marque et n’est pas soumis au garde-fou des images maquette. Exception de prototype : les visuels de `docs/images.md` peuvent apparaître dans la Preview noindex si `BAOBAB_PREVIEW_MOCKUPS=true`; ils sont réservés aux essais privés, ne prouvent ni l’équipe, ni les locaux, ni une réalisation, et restent désactivés en production. Aucune image dont l’accord de publication est « à obtenir » ne peut être publiée.
 
 ## 6. Stack technique
 
@@ -83,14 +84,14 @@ Cibles : fintech, startups, PME, petits commerces, institutions et administratio
 ## 7. Direction artistique
 
 - Ambiance : africaine contemporaine mêlée à créative et média, sobre, éditoriale, rassurante pour institutions et fintech. Le baobab symbolise l'enracinement et la croissance.
-- Palette actuellement implémentée dans `src/styles/tokens.css` : marine `#102B46`, marine foncé `#0A1D30`, crème `#F5F0E6`, papier `#FFFCF6`, gris `#E9EDF0`, corail `#F47A63`, corail foncé `#DE604B`. Les tokens sont centralisés dans ce fichier.
-- **Le corail sert uniquement aux boutons et petits détails** (jamais de texte corail sur fond crème, jamais de grande surface corail). Texte foncé sur fond corail.
-- Contraste WCAG AA exigé. Header : rapports calculés crème sur marine foncé 15,02:1, marine sur crème 12,70:1, marine foncé sur corail 6,34:1, filet corail sur crème 3,14:1.
+- Palette issue du logo et implémentée dans `src/styles/tokens.css` : marine `#102A43`, orange `#F17620`, crème `#F8F3E8`, plus papier et gris. Les tokens sont centralisés dans ce fichier.
+- **L’orange sert aux boutons et petits détails**. Il ne doit jamais être utilisé comme texte ni comme filet fin sur crème ; le texte des boutons orange est marine. Pas de texte blanc ou crème sur orange.
+- Contraste WCAG : marine/crème 13,23:1, marine/orange 5,13:1, orange/crème 2,58:1. Orange sur crème ne convient ni au texte ni aux filets fins. L’indicateur actif du header est marine sur crème (13,23:1, supérieur au minimum 3:1 pour un élément graphique).
 - Formes : filets fins de 1 px, cartes à bordure fine, rayons de 4 à 8 px, peu d'ombres. Motif de **cernes de baobab** en SVG (signature discrète).
 - Mise en page : accueil structuré (hero, offres, à propos, méthode, exemple IA, appel à l'action, pied de page) ; pages internes en colonnes éditoriales à filets, **pas de piles de cartes numérotées**. FAQ en `<details>` accessibles. Tableau comparatif des formules de présence en ligne.
 - H1 d'accueil validé : FR « Des solutions numériques utiles aux entreprises et aux institutions d'Abidjan. » / EN « Useful digital solutions for businesses and institutions in Abidjan. »
 - Titres validés : « Ce que nous construisons », « Une équipe basée à Abidjan », « Comment nous travaillons », étapes « Écouter / Cadrer / Construire / Livrer » (EN : What we build / A team based in Abidjan / How we work / Listen / Define the scope / Build / Deliver). Appel à l'action final : « Entreprise, institution, école ou ONG : parlons de votre besoin. »
-- Header : barre supérieure marine (coordonnées et horaires, masquée au défilement), panneau logo marine, navigation crème, bouton corail ; en mobile, header marine de 56 px, bandeau « Appeler », menu hamburger accessible (focus, Échap).
+- Header : barre supérieure marine (coordonnées et horaires, masquée au défilement), panneau logo marine, navigation crème, bouton orange ; en mobile, header marine de 56 px, bandeau « Appeler », menu hamburger accessible (focus, Echap).
 - Aucune photographie réelle de l’agence n’est encore fournie : l’illustration SVG du baobab reste l’accueil par défaut ; en Preview/développement, `BAOBAB_PREVIEW_MOCKUPS=true` montre le hero, des scènes de travail et de couverture, ainsi que trois interfaces de démonstration, avec des légendes qui décrivent les scènes sans qualifier leur origine. Les portraits restent masqués tant que leurs rôles ne sont pas confirmés.
 - Carte Google Maps **chargée seulement au clic**, avec liens Google Maps, Waze et WhatsApp.
 
@@ -126,11 +127,12 @@ Cibles : fintech, startups, PME, petits commerces, institutions et administratio
 | 6 | README et checklist de déploiement | PR #5, `0dcc1f3` |
 | 3 bis | Direction artistique, accueil redessiné, H1 FR/EN, formules en ligne, archives vides masquées | PR #6, `8fc70a9` |
 | 3 ter à 3 septies | Titres et pages éditoriales, motion CSS, corrections mobile, formulaire sujet/type fusionné (sécurité conservée), header distinctif | PR #7, dernier commit `fa1a9aa` |
+| Logo | Logo clair/sombre et horizontal, icones, favicon, image de partage, metadata et palette. | 4 commits distincts ; branche `phase/logo` basee sur `phase/images-privees`; PR #9 vers `main`, sans fusion. |
 | Images (prototype) | Visuels convertis en WebP, emplacements Preview pour hero, travail, couverture et interfaces de démonstration derrière `BAOBAB_PREVIEW_MOCKUPS`, registre des images ; rôles des portraits non attribués | Branche `phase/images-privees` |
 
-### État Git et des PR, vérifié le 22 novembre 2026
+### GitHub PR status, checked 23 November 2026
 
-> Une indication précédente disait que #4 et #5 étaient fusionnées. Au contrôle GitHub de cette date, elles apparaissent encore ouvertes (`merged: false`) et `origin/main` est au commit `88e80e3`, sans les commits `2bb82b9` ou `0dcc1f3`. Le dépôt distant est l’état observable ; reconfirmer avec le propriétaire si son tableau de bord diffère.
+> At this check PRs #4 to #9 are open. PR #8 mergeability is unknown; PR #9 is clean and targets main. Recheck live status before merging.
 
 | PR | Branche | État GitHub observé |
 |---|---|---|
@@ -138,14 +140,16 @@ Cibles : fintech, startups, PME, petits commerces, institutions et administratio
 | #5 | `phase/06-deploiement` | Ouverte, sans conflit (`mergeable_state: clean`) |
 | #6 | `phase/03-bis-direction-artistique` | Ouverte, sans conflit (`mergeable_state: clean`) |
 | #7 | `phase/03-quater-mobile-desktop` (base = branche #6) | Ouverte, sans conflit (`mergeable_state: clean`) |
+| #8 | `phase/images-privees` (base #7) | Ouverte, mergeability inconnue |
+| #9 | `phase/logo` (base locale #8) | Ouverte, clean ; Preview et SVG verifies en HTTP 200 |
 
-Le checkout décrit est `phase/03-bis-direction-artistique`, `HEAD` = `8fc70a9`, propre et synchronisé. Le commit `fa1a9aa` de la PR #7 contient le header serveur final et ses corrections antérieures ; ces changements ne sont pas dans le checkout #6 avant intégration de #7.
+Le checkout de la phase logo est `phase/logo`, base locale `phase/images-privees` (`8329195`). PR #9 cible `main`, reste ouverte et est clean. Sa Preview Vercel repond 200 pour les fichiers SVG de marque.
 
-Le 22 novembre, `git merge origin/main` dans la branche #6 a répondu `Already up to date` : `main` était déjà ancêtre de #6, aucun conflit de page d’accueil n’existait et aucun commit de merge n’a été créé. `npm run lint` et `npm run build` ont réussi ; le push a répondu `Everything up-to-date`. `main` n’a pas été modifiée.
+Historique de la fusion de main dans #6 conserve ci-dessus. Le travail de la phase logo n a pas modifie `main`.
 
 `clean` signifie qu’aucun conflit n’est détecté ; cela ne signifie pas que la PR est fusionnée. Lire les diffs et commits de #6/#7 avant de reprendre une tâche pour ne pas dupliquer leur travail.
 
-Fichiers de reference presents dans le checkout #6 : `docs/phase-1-architecture.md`, `docs/phase-2-design-system.md`, `docs/PHASE-03-DELIVERY.md`, `docs/PHASE-04-SECURITY.md` et `docs/PHASE-05-SEO-PERFORMANCE.md`. Le `README.md` et `docs/PHASE-06-DEPLOYMENT.md` sont dans la branche de la PR #5 ; `docs/PHASE-05-BIS-PERFORMANCE.md` est dans celle de la PR #4. Ces fichiers ne sont pas encore integres au checkout actuel.
+Fichiers de reference du checkout initial #6 : `docs/phase-1-architecture.md`, `docs/phase-2-design-system.md`, `docs/PHASE-03-DELIVERY.md`, `docs/PHASE-04-SECURITY.md` et `docs/PHASE-05-SEO-PERFORMANCE.md`. Les autres fichiers historiques mentionnes restent a verifier dans leurs branches.
 
 ## 11. Ce qui reste à faire
 
@@ -153,7 +157,7 @@ Fichiers de reference presents dans le checkout #6 : `docs/phase-1-architecture.
 - [x] Visuels préparés pour une Preview de test avec `next/image`; registre `docs/images.md`. L’option `BAOBAB_PREVIEW_MOCKUPS` reste désactivée par défaut ; lorsqu’elle vaut `true`, les scènes de travail, scènes média et démonstrations d’interfaces sont aussi visibles, avec des légendes descriptives en FR/EN.
 - [ ] Remplacer les maquettes par des photos réelles autorisées avant tout lancement public. Les correspondances fondateur/responsables restent à confirmer ; aucun nom ou rôle n’est associé aux portraits.
 - [ ] Photos réelles : équipe, portraits, bureau, équipe en action, extérieur du bureau, projets, médias. Accords écrits nécessaires pour les personnes reconnaissables.
-- [ ] Logo définitif en SVG (versions claire, sombre, icône seule), favicon, image de partage 1200 × 630.
+- [x] Logo livre : SVG clair/sombre et horizontal, icone seule, favicon multi-tailles et image de partage 1200 x 630.
 - [ ] Tableau des projets réalisés : client, secteur, date, accord écrit, ce qu'on peut montrer, statut (client, démo, académique).
 - [ ] Témoignages réels avec autorisation écrite.
 - [ ] Email professionnel, URL des réseaux sociaux, vérification du point GPS.
@@ -221,3 +225,4 @@ Fichiers de reference presents dans le checkout #6 : `docs/phase-1-architecture.
 | 2026-11-22 | Phase images prototype : 12 visuels du lot joint préparés en WebP sans métadonnées, affichage privé derrière variable serveur, registre `docs/images.md`; les images générées restent interdites de publication. |
 | 2026-11-22 | Révision Preview images (commit `c414643`) : retrait de la mention visible sous le hero ; intégration des illustrations de travail, des exemples média et des trois interfaces fictives. Portraits gardés masqués faute de correspondances validées ; médianes Lighthouse mobile : LCP 2 369 ms, CLS 0, performance 92. |
 | 2026-11-22 | Révision demandée : retrait des formulations visibles sur l’origine ou le statut fictif des images de Preview ; légendes réécrites pour décrire naturellement chaque scène, provenance et limites conservées en documentation interne. |
+| 2026-11-23 | Phase logo : logo clair/sombre et horizontal, icône, favicon, image de partage et palette adoptés ; quatre commits séparés sur `phase/logo`, PR #9 ouverte vers `main`, clean, sans fusion ; tous les SVG publics de la marque renvoient HTTP 200 sur sa Preview. |
