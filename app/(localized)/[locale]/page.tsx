@@ -15,6 +15,7 @@ import { agencyMedia } from "@/config/media";
 import messagesFr from "@/messages/fr.json";
 import messagesEn from "@/messages/en.json";
 import { pageMetadata } from "@/lib/seo";
+import { PreviewImageGallery } from "@/components/site/preview-image-gallery";
 
 type HomeCopy = typeof messagesFr.home;
 const dictionaries = { fr: messagesFr, en: messagesEn };
@@ -46,18 +47,21 @@ function xof(amount: number, locale: Locale) {
 
 function OfferCard({ offer, category, locale, name, copy, index }: { offer: Offer; category: OfferCategory; locale: Locale; name: string; copy: HomeCopy; index: number }) {
   const price = offer.prices[0];
-  return <Link aria-label={`${name}: ${offer.translations[locale].title}`} className="block h-full" href={"/" + locale + "/" + categoryRoutes[category][locale]}>
-    <Card as="article" className="offer-card flex h-full min-h-64 flex-col" data-motion-delay={index * 60} data-motion-reveal="pending" padded={false}>
-      <p className="text-xs font-bold uppercase tracking-[.12em] text-muted">{name}</p>
-      <h3 className="mt-4 font-display text-2xl font-extrabold leading-tight tracking-[-.02em] text-navy">{offer.translations[locale].title}</h3>
-      <p className="mt-3 flex-1 leading-7 text-muted">{offer.translations[locale].summary}</p>
-      <p className="mt-6 border-t border-navy/10 pt-4 text-sm font-bold text-navy">
-        <span className="mr-1 text-xs font-semibold text-muted">{copy.priceStarting}</span>{xof(price.amountXof, locale)}
-        {price.cadence === "month" && <span className="ml-1 text-xs font-semibold text-muted">{copy.priceMonthly}</span>}
-        <span className="price-tax ml-1 text-xs font-semibold text-muted">{copy.tax}</span>
-        <span className="price-usd mt-1 block text-xs font-normal text-muted">≈ {formatIndicativeUsd(price.amountXof)} · {copy.usdIndicative}</span>
-      </p>
-      <span aria-hidden="true" className="offer-card-arrow mt-4 inline-flex items-center text-sm font-bold text-navy"><ExternalArrowIcon /></span>
+  return <Link aria-label={`${name}: ${offer.translations[locale].title}`} className="offer-card-link block h-full" href={"/" + locale + "/" + categoryRoutes[category][locale]}>
+    <Card as="article" className="offer-card" data-motion-delay={index * 60} data-motion-reveal="pending" padded={false}>
+      <div className="offer-card-content">
+        <p className="offer-card-eyebrow">{name}</p>
+        <h3 className="offer-card-title">{offer.translations[locale].title}</h3>
+        <p className="offer-card-summary">{offer.translations[locale].summary}</p>
+      </div>
+      <div className="offer-card-footer">
+        <p className="offer-card-pricing">
+          <span className="offer-card-starting">{copy.priceStarting}</span>
+          <strong>{xof(price.amountXof, locale)}{price.cadence === "month" && <span className="offer-card-cadence"> {copy.priceMonthly}</span>}<span className="price-tax"> {copy.tax}</span></strong>
+          <span className="price-usd">≈ {formatIndicativeUsd(price.amountXof)} · {copy.usdIndicative}</span>
+        </p>
+        <span aria-hidden="true" className="offer-card-arrow"><ExternalArrowIcon /></span>
+      </div>
     </Card>
   </Link>;
 }
@@ -105,15 +109,19 @@ export default async function HomePage({ params }: { params: Promise<{ locale: L
             <p className="mt-6 max-w-xl text-lg leading-8 text-muted">{copy.heroSubtitle}</p>
             <ButtonLink className="mt-8" href={"/" + locale + "/contact"}>{copy.heroCta}<ExternalArrowIcon /></ButtonLink>
           </div>
-          <div className="hero-art-wrap">{agencyMedia.hero.src && agencyMedia.hero.alt[locale] ? <div className="hero-image-frame"><Image alt={agencyMedia.hero.alt[locale]} className="hero-photo" fill priority sizes="(max-width: 1024px) 100vw, 48vw" src={agencyMedia.hero.src} /></div> : <BaobabRings />}</div>
+          <div className={`hero-art-wrap${agencyMedia.hero ? " hero-art-wrap-with-photo" : ""}`}>{agencyMedia.hero ? <figure className="hero-image-figure"><div className="hero-image-frame"><Image alt={agencyMedia.hero.alt[locale]} className="hero-photo" height={agencyMedia.hero.height} loading="lazy" sizes="(max-width: 1024px) calc(100vw - 3rem), 46vw" src={agencyMedia.hero.src} width={agencyMedia.hero.width} /></div><figcaption className="preview-image-caption">{agencyMedia.hero.caption[locale]}</figcaption></figure> : <BaobabRings />}</div>
         </div>
       </section>
+
+      {agencyMedia.about.length > 0 && <section className="px-5 pb-14 sm:px-8 md:pb-20" aria-label={locale === "fr" ? "Scènes de travail" : "Work scenes"}>
+        <div className="mx-auto max-w-7xl"><PreviewImageGallery images={agencyMedia.about} locale={locale} className="preview-image-gallery-two" /></div>
+      </section>}
 
       <section aria-label={copy.servicesTitle} className="px-5 py-14 sm:px-8 md:py-20" id="services">
         <div className="mx-auto max-w-7xl">
           <Heading as="h2">{copy.servicesTitle}</Heading>
           <p className="mt-4 max-w-2xl leading-7 text-muted">{copy.servicesIntro}</p>
-          <div className="mt-9 grid auto-rows-fr gap-4 sm:grid-cols-2 xl:grid-cols-4">
+          <div className="mt-9 offer-grid">
             {featuredOffers.map(({ category, offer }, index) => <OfferCard category={category} copy={copy} index={index} key={category} locale={locale} name={categoryNames[category]} offer={offer} />)}
           </div>
           <p className="mt-5 text-xs text-muted">{copy.priceNote} {priceDate}. {copy.priceSupersedes}</p>
@@ -147,6 +155,14 @@ export default async function HomePage({ params }: { params: Promise<{ locale: L
           </div>
         </div>
       </section>
+
+      {agencyMedia.demos.length > 0 && <section className="bg-cream px-5 py-14 sm:px-8 md:py-20" id="interface-demos">
+        <div className="mx-auto max-w-7xl">
+          <Heading as="h2">{locale === "fr" ? "Interfaces de démonstration" : "Demo interfaces"}</Heading>
+          <p className="mt-4 max-w-2xl leading-7 text-muted">{locale === "fr" ? "Aperçu de trois interfaces : gestion, médiathèque numérique et campus." : "A preview of three interfaces: management, a digital library and a campus platform."}</p>
+          <PreviewImageGallery images={agencyMedia.demos} locale={locale} className="preview-image-gallery-three mt-8" />
+        </div>
+      </section>}
 
       <section className="bg-navy px-5 py-14 text-cream sm:px-8 md:py-20" id="ia-example">
         <div className="mx-auto grid max-w-7xl gap-9 lg:grid-cols-[.9fr_1.1fr] lg:items-center">
