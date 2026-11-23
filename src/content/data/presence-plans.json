@@ -1,0 +1,173 @@
+{
+  "featureKeys": ["networks", "posts", "visuals", "videos", "onsiteSession", "communityReplies", "metaCampaigns", "googleBusiness", "editorialCalendar", "reporting"],
+  "featureLabels": {
+    "fr": {
+      "networks": "Réseaux gérés",
+      "posts": "Publications par mois",
+      "visuals": "Visuels",
+      "videos": "Vidéos courtes",
+      "onsiteSession": "Séance photo ou vidéo sur place",
+      "communityReplies": "Réponses à la communauté",
+      "metaCampaigns": "Campagnes Meta gérées",
+      "googleBusiness": "Google Business Profile",
+      "editorialCalendar": "Calendrier éditorial",
+      "reporting": "Suivi et bilan"
+    },
+    "en": {
+      "networks": "Managed networks",
+      "posts": "Posts per month",
+      "visuals": "Visuals",
+      "videos": "Short videos",
+      "onsiteSession": "On-site photo or video session",
+      "communityReplies": "Community replies",
+      "metaCampaigns": "Meta campaigns managed",
+      "googleBusiness": "Google Business Profile",
+      "editorialCalendar": "Editorial calendar",
+      "reporting": "Tracking and reporting"
+    }
+  },
+  "plans": [
+    {
+      "id": "presence-demarrage",
+      "status": "published",
+      "createdAt": "2026-11-21T00:00:00.000Z",
+      "updatedAt": "2026-11-21T00:00:00.000Z",
+      "category": "onlinePresence",
+      "amountXof": 150000,
+      "cadence": "month",
+      "order": 1,
+      "translations": {
+        "fr": {
+          "name": "Démarrage",
+          "summary": "Une présence régulière sur deux réseaux.",
+          "features": {
+            "networks": "2",
+            "posts": "8",
+            "visuals": "À partir de modèles",
+            "videos": null,
+            "onsiteSession": null,
+            "communityReplies": null,
+            "metaCampaigns": null,
+            "googleBusiness": "Fiche mise à jour",
+            "editorialCalendar": "Mensuel",
+            "reporting": "Résumé mensuel"
+          }
+        },
+        "en": {
+          "name": "Launch",
+          "summary": "A regular presence on two social networks.",
+          "features": {
+            "networks": "2",
+            "posts": "8",
+            "visuals": "From templates",
+            "videos": null,
+            "onsiteSession": null,
+            "communityReplies": null,
+            "metaCampaigns": null,
+            "googleBusiness": "Profile updated",
+            "editorialCalendar": "Monthly",
+            "reporting": "Monthly summary"
+          }
+        }
+      }
+    },
+    {
+      "id": "presence-suivi",
+      "status": "published",
+      "createdAt": "2026-11-21T00:00:00.000Z",
+      "updatedAt": "2026-11-21T00:00:00.000Z",
+      "category": "onlinePresence",
+      "amountXof": 300000,
+      "cadence": "month",
+      "order": 2,
+      "translations": {
+        "fr": {
+          "name": "Suivi",
+          "summary": "Des contenus sur trois réseaux et une animation suivie.",
+          "features": {
+            "networks": "3",
+            "posts": "16",
+            "visuals": "Sur mesure",
+            "videos": "2",
+            "onsiteSession": null,
+            "communityReplies": "Messages et commentaires, en heures ouvrées",
+            "metaCampaigns": "1",
+            "googleBusiness": "Fiche mise à jour",
+            "editorialCalendar": "Mensuel",
+            "reporting": "Rapport mensuel"
+          }
+        },
+        "en": {
+          "name": "Ongoing",
+          "summary": "Content for three networks with ongoing community support.",
+          "features": {
+            "networks": "3",
+            "posts": "16",
+            "visuals": "Custom",
+            "videos": "2",
+            "onsiteSession": null,
+            "communityReplies": "Messages and comments, during business hours",
+            "metaCampaigns": "1",
+            "googleBusiness": "Profile updated",
+            "editorialCalendar": "Monthly",
+            "reporting": "Monthly report"
+          }
+        }
+      }
+    },
+    {
+      "id": "presence-complet",
+      "status": "published",
+      "createdAt": "2026-11-21T00:00:00.000Z",
+      "updatedAt": "2026-11-21T00:00:00.000Z",
+      "category": "onlinePresence",
+      "amountXof": 600000,
+      "cadence": "month",
+      "order": 3,
+      "translations": {
+        "fr": {
+          "name": "Complet",
+          "summary": "Une présence élargie avec contenus et séance sur place.",
+          "features": {
+            "networks": "4",
+            "posts": "24",
+            "visuals": "Sur mesure",
+            "videos": "6",
+            "onsiteSession": "1 par mois",
+            "communityReplies": "Messages, en heures ouvrées",
+            "metaCampaigns": "2",
+            "googleBusiness": "Avis et publications",
+            "editorialCalendar": "Mensuel",
+            "reporting": "Rapport détaillé et point d’échange"
+          }
+        },
+        "en": {
+          "name": "Complete",
+          "summary": "A broader presence with original content and an on-site session.",
+          "features": {
+            "networks": "4",
+            "posts": "24",
+            "visuals": "Custom",
+            "videos": "6",
+            "onsiteSession": "1 per month",
+            "communityReplies": "Messages, during business hours",
+            "metaCampaigns": "2",
+            "googleBusiness": "Reviews and posts",
+            "editorialCalendar": "Monthly",
+            "reporting": "Detailed report and review meeting"
+          }
+        }
+      }
+    }
+  ],
+  "terms": {
+    "fr": [
+      "Le budget publicitaire n’est pas inclus et est payé directement aux plateformes.",
+      "Les déplacements hors Abidjan sont en supplément."
+    ],
+    "en": [
+      "Advertising spend is not included and is paid directly to the platforms.",
+      "Travel outside Abidjan is charged separately."
+    ]
+  }
+}

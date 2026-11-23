@@ -7,7 +7,9 @@ import { locales } from "@/content/schema";
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   if (!indexingEnabled || !siteOrigin) return [];
   const [projects, posts] = await Promise.all([getProjects(), getPosts()]);
-  const keys: SeoPageKey[] = ["digital-solutions", "ai-automation", "online-presence", "media-coverage", "about", "projects", "blog", "faq"];
+  const keys: SeoPageKey[] = ["digital-solutions", "ai-automation", "online-presence", "media-coverage", "about", "faq"];
+  if (projects.length > 0) keys.push("projects");
+  if (posts.length > 0) keys.push("blog");
   const entries: MetadataRoute.Sitemap = [];
   const addPair = (frPath: string, enPath: string, lastModified?: Date) => {
     for (const locale of locales) {

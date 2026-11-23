@@ -92,6 +92,31 @@ export interface Offer extends ContentBase {
   order: number;
 }
 
+export interface ServicePlanTranslation {
+  name: string;
+  summary: string;
+  features: Record<PresencePlanFeatureKey, string | null>;
+}
+
+export type PresencePlanFeatureKey =
+  | "networks" | "posts" | "visuals" | "videos" | "onsiteSession"
+  | "communityReplies" | "metaCampaigns" | "googleBusiness" | "editorialCalendar" | "reporting";
+
+export interface ServicePlan extends ContentBase {
+  category: "onlinePresence";
+  translations: Localized<ServicePlanTranslation>;
+  amountXof: number;
+  cadence: "month";
+  order: number;
+}
+
+export interface ServicePlanCatalog {
+  plans: ServicePlan[];
+  terms: Localized<string[]>;
+  featureKeys: PresencePlanFeatureKey[];
+  featureLabels: Localized<Record<PresencePlanFeatureKey, string>>;
+}
+
 export interface TeamMemberTranslation {
   name: string;
   role: string;
@@ -112,5 +137,6 @@ export interface ContentRepository {
   getPostBySlug(locale: Locale, slug: string): Promise<Post | null>;
   getTestimonials(): Promise<Testimonial[]>;
   getOffers(): Promise<Offer[]>;
+  getPresencePlanCatalog(): Promise<ServicePlanCatalog>;
   getTeam(): Promise<TeamMember[]>;
 }

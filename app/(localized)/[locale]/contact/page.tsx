@@ -13,6 +13,7 @@ import { ButtonLink } from "@/components/ui/button-link";
 import messagesFr from "@/messages/fr.json";
 import messagesEn from "@/messages/en.json";
 import { pageMetadata } from "@/lib/seo";
+import { ExternalArrowIcon } from "@/components/ui/external-arrow-icon";
 
 const dictionaries = { fr: messagesFr, en: messagesEn };
 
@@ -44,18 +45,18 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
   const whatsapp = getWhatsAppUrl();
 
   return <>
-    <SiteHeader locale={locale} copy={homeCopy} page="contact" address={agencyContact.address} phone={agencyContact.phone} email={agencyContact.email} socials={agencyContact.socialLinks} />
+    <SiteHeader locale={locale} copy={homeCopy} address={agencyContact.address} phone={agencyContact.phone} phoneDisplay={agencyContact.phoneDisplay} email={agencyContact.email} hoursLabel={dictionaries[locale].home.hoursTitle} hoursSummary={dictionaries[locale].home.hoursSummary} currentPath={`/${locale}/contact`} />
     <main>
-      <section className="bg-cream px-5 py-14 sm:px-8 md:py-20"><div className="mx-auto max-w-7xl"><Heading as="h1" eyebrow={copy.eyebrow}>{copy.title}</Heading><p className="mt-5 max-w-2xl text-lg leading-8 text-muted">{copy.subtitle}</p></div></section>
+        <section className="bg-cream px-5 py-14 sm:px-8 md:py-20"><div className="mx-auto max-w-7xl"><Heading as="h1" className="contact-page-title" eyebrow={copy.eyebrow}>{copy.title}</Heading><p className="mt-5 max-w-2xl text-lg leading-8 text-muted">{copy.subtitle}</p></div></section>
       <section className="px-5 py-14 sm:px-8 md:py-20"><div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[1.1fr_.9fr]">
         <Card><h2 className="font-display text-2xl font-extrabold text-navy">{copy.formTitle}</h2><p className="mb-6 mt-2 text-sm text-muted">{copy.formIntro}</p><ContactForm copy={copy} locale={locale} nonce={nonce} /></Card>
         <div className="grid content-start gap-6"><Card><h2 className="font-display text-2xl font-extrabold text-navy">{copy.locationTitle}</h2><p className="mt-4 text-lg font-semibold text-navy">{agencyContact.address}</p>
           {agencyContact.latitude === null && <p className="mt-2 text-sm text-muted">{copy.mapNote}</p>}
           <div className="mt-5"><MapEmbed copy={copy} query={getMapDestination()} /></div>
-          <div className="mt-4 flex flex-wrap gap-3"><a className="text-sm font-bold text-navy underline decoration-coral decoration-2 underline-offset-4" href={googleDirections} rel="noreferrer" target="_blank">{copy.googleMaps} · {copy.directions} ↗</a><a className="text-sm font-bold text-navy underline decoration-coral decoration-2 underline-offset-4" href={wazeDirections} rel="noreferrer" target="_blank">Waze · {copy.directions} ↗</a></div>
-          {whatsapp && <ButtonLink className="mt-5" href={whatsapp} rel="noreferrer" target="_blank" variant="secondary">{copy.whatsapp} ↗</ButtonLink>}
+          <div className="mt-4 flex flex-wrap gap-3"><a className="inline-flex items-center gap-1 text-sm font-bold text-navy underline decoration-navy decoration-2 underline-offset-4" href={googleDirections} rel="noreferrer" target="_blank">{copy.googleMaps} · {copy.directions}<ExternalArrowIcon /></a><a className="inline-flex items-center gap-1 text-sm font-bold text-navy underline decoration-navy decoration-2 underline-offset-4" href={wazeDirections} rel="noreferrer" target="_blank">Waze · {copy.directions}<ExternalArrowIcon /></a></div>
+          {whatsapp && <ButtonLink className="mt-5" href={whatsapp} rel="noreferrer" target="_blank" variant="secondary">{copy.whatsapp}<ExternalArrowIcon /></ButtonLink>}
         </Card>
-        <Card><h2 className="font-display text-xl font-extrabold text-navy">{copy.directContact}</h2><dl className="mt-4 grid gap-3 text-sm"><div><dt className="font-semibold text-muted">{copy.email}</dt><dd>{agencyContact.email ? <a className="text-navy underline" href={`mailto:${agencyContact.email}`}>{agencyContact.email}</a> : copy.notProvided}</dd></div><div><dt className="font-semibold text-muted">{homeCopy.phone}</dt><dd>{agencyContact.phone ? <a className="text-navy underline" href={`tel:${agencyContact.phone}`}>{agencyContact.phone}</a> : copy.notProvided}</dd></div><div><dt className="font-semibold text-muted">{copy.hours}</dt><dd>{agencyContact.hours ?? copy.notProvided}</dd></div><div><dt className="font-semibold text-muted">{copy.timeZone}</dt><dd>{agencyContact.timeZone}</dd></div></dl></Card></div>
+        <Card><h2 className="font-display text-xl font-extrabold text-navy">{copy.directContact}</h2><dl className="mt-4 grid gap-3 text-sm"><div><dt className="font-semibold text-muted">{copy.email}</dt><dd>{agencyContact.email ? <a className="text-navy underline" href={`mailto:${agencyContact.email}`}>{agencyContact.email}</a> : null}</dd></div><div><dt className="font-semibold text-muted">{homeCopy.phone}</dt><dd>{agencyContact.phone ? <a className="text-navy underline" href={`tel:${agencyContact.phone}`}>{agencyContact.phoneDisplay}</a> : null}</dd></div><div><dt className="font-semibold text-muted">{copy.hours}</dt><dd>{copy.hoursSummary}</dd></div></dl></Card></div>
       </div></section>
     </main>
     <SiteFooter locale={locale} copy={homeCopy} email={agencyContact.email} socials={agencyContact.socialLinks} />

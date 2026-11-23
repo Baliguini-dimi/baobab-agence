@@ -3,12 +3,14 @@ import postsData from "./data/posts.json";
 import testimonialsData from "./data/testimonials.json";
 import offersData from "./data/offers.json";
 import teamData from "./data/team.json";
+import presencePlansData from "./data/presence-plans.json";
 import type {
   ContentRepository,
   Locale,
   Offer,
   Post,
   Project,
+  ServicePlanCatalog,
   TeamMember,
   Testimonial,
 } from "./schema";
@@ -20,6 +22,7 @@ const posts = postsData as Post[];
 const testimonials = testimonialsData as Testimonial[];
 const offers = offersData as Offer[];
 const team = teamData as TeamMember[];
+const presencePlanCatalog = presencePlansData as ServicePlanCatalog;
 
 function visible<T extends { status: string }>(items: T[]): T[] {
   return items.filter((item) => item.status === "published");
@@ -71,6 +74,12 @@ const localRepository: ContentRepository = {
   async getOffers() {
     return visible(offers).sort((a, b) => a.order - b.order);
   },
+  async getPresencePlanCatalog() {
+    return {
+      ...presencePlanCatalog,
+      plans: visible(presencePlanCatalog.plans).sort((a, b) => a.order - b.order),
+    };
+  },
   async getTeam() {
     return visible(team)
       .filter((member) => member.publicProfileApproved)
@@ -86,4 +95,5 @@ export const getPostBySlug = (locale: Locale, slug: string) =>
   localRepository.getPostBySlug(locale, slug);
 export const getTestimonials = () => localRepository.getTestimonials();
 export const getOffers = () => localRepository.getOffers();
+export const getPresencePlanCatalog = () => localRepository.getPresencePlanCatalog();
 export const getTeam = () => localRepository.getTeam();

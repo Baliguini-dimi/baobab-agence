@@ -6,10 +6,6 @@ type CardProps = HTMLAttributes<HTMLElement> & {
 };
 
 export function Card({ as: Element = "article", padded = true, className = "", ...props }: CardProps) {
-  return (
-    <Element
-      className={`rounded-2xl border border-navy/8 bg-white shadow-card ${padded ? "p-6 md:p-8" : ""} ${className}`}
-      {...props}
-    />
-  );
+  const classes = "rounded-md border border-navy/12 bg-white shadow-card " + (padded ? "p-6 md:p-8 " : "") + className;
+  return <Element className={classes} {...props} />;
 }

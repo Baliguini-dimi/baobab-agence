@@ -1,12 +1,12 @@
 import type { HTMLAttributes } from "react";
 
 type BadgeProps = HTMLAttributes<HTMLSpanElement> & {
-  tone?: "neutral" | "coral" | "navy";
+  tone?: "neutral" | "accent" | "navy";
 };
 
 const tones = {
   neutral: "bg-stone text-navy",
-  coral: "bg-coral text-navy-deep",
+  accent: "bg-accent text-navy",
   navy: "bg-navy text-cream",
 };
 

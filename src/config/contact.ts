@@ -8,10 +8,9 @@ export interface SocialLink {
 export const agencyContact = {
   address: "Dokui, Abobo, Abidjan",
   phone: "+2250779917447",
+  phoneDisplay: "+225 07 79 91 74 47",
   email: "dbaliguini@gmail.com",
   whatsappNumber: "+23672380384",
-  hours: null as string | null,
-  timeZone: "Africa/Abidjan (UTC+0)",
   latitude: 5.4040088,
   longitude: -4.0008089,
   socialLinks: [
@@ -22,6 +21,11 @@ export const agencyContact = {
     { network: "X", url: null },
   ] as SocialLink[],
 };
+
+export const openingHours = {
+  weekdays: { days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], opens: "08:00", closes: "17:00" },
+  saturday: { days: ["Saturday"], opens: "08:00", closes: "12:00" },
+} as const;
 
 export function getMapDestination() {
   if (agencyContact.latitude !== null && agencyContact.longitude !== null) {

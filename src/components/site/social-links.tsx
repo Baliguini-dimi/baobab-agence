@@ -17,10 +17,9 @@ function Mark({ network }: { network: SocialNetwork }) {
 }
 
 export function SocialLinks({ links, label, className = "" }: { links: SocialLink[]; label: string; className?: string }) {
-  return <div aria-label={label} className={`flex items-center gap-3 ${className}`} role="group">{links.map((link) => {
-    const icon = <Mark network={link.network} />;
-    return link.url
-      ? <a aria-label={labels[link.network]} className="social-icon" href={link.url} key={link.network} rel="noreferrer" target="_blank">{icon}</a>
-      : <span aria-label={`${labels[link.network]} — URL à renseigner`} className="social-icon social-icon-placeholder" key={link.network} title={`${labels[link.network]} — URL à renseigner`}>{icon}</span>;
-  })}</div>;
+  const available = links.filter((link) => link.url);
+  if (!available.length) return null;
+  return <div aria-label={label} className={"flex items-center gap-3 " + className} role="group">{available.map((link) =>
+    <a aria-label={labels[link.network]} className="social-icon" href={link.url!} key={link.network} rel="noreferrer" target="_blank"><Mark network={link.network} /></a>
+  )}</div>;
 }
