@@ -25,7 +25,7 @@ export function SiteFooter({ locale, copy, email, socials }: {
     <footer className="bg-navy-deep px-5 py-12 text-cream sm:px-8">
       <div className="mx-auto grid max-w-7xl gap-8 sm:grid-cols-[1fr_auto]">
         <div>
-          <Logo tone="light" />
+          <Logo className="brand-logo-footer" tone="light" />
           <p className="mt-4 max-w-lg text-sm leading-6 text-cream/75">{copy.footerNote}</p>
           {agencyContact.phone && <a className="mt-4 block text-sm underline underline-offset-4" href={"tel:" + agencyContact.phone}>{agencyContact.phoneDisplay}</a>}
           {email && <a className="mt-2 inline-block text-sm underline underline-offset-4" href={"mailto:" + email}>{email}</a>}

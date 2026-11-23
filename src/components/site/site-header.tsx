@@ -69,8 +69,8 @@ export function SiteHeader({
     </div>
     <header className="site-header sticky top-0 z-40" data-baobab-header data-compact="false">
       <div className="site-header-inner mx-auto flex max-w-7xl items-center justify-between gap-3 px-5 sm:px-8">
-        <Link aria-label="Baobab, accueil" aria-current={isCurrent(root) ? "page" : undefined} className="brand-panel" href={root}>
-          <Logo tone="light" />
+        <Link aria-label="Baobab" aria-current={isCurrent(root) ? "page" : undefined} className="brand-panel" href={root}>
+          <Logo className="brand-logo-header" decorative tone="light" />
         </Link>
         <nav aria-label={locale === "fr" ? "Navigation principale" : "Main navigation"} className="primary-navigation items-center text-sm font-semibold text-navy">
           <Link aria-current={isCurrent(root) ? "page" : undefined} className="primary-nav-link" href={root}>{copy.nav.home}</Link>
