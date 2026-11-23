@@ -35,12 +35,14 @@ export default async function LocaleLayout({
   await connection();
   const nonce = (await headers()).get("x-nonce") ?? undefined;
   const consentCopy = dictionaries[locale as keyof typeof dictionaries].cookieConsent;
+  const brandLogoUrl = new URL("/brand/baobab-logo-clair.svg", siteOrigin).href;
   const organizationGraph = {
     "@context": "https://schema.org",
     "@graph": [
       {
         "@type": "Organization",
         name: "Baobab",
+        logo: brandLogoUrl,
         email: agencyContact.email,
         telephone: agencyContact.phone,
         address: { "@type": "PostalAddress", streetAddress: agencyContact.address, addressLocality: "Abidjan", addressCountry: "CI" },
